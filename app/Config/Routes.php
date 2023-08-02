@@ -29,7 +29,7 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'UserController::login');
+$routes->get('/', 'Home::index');
 
 
 //...
@@ -38,8 +38,6 @@ $routes->match(['get', 'post'], 'login', 'UserController::login', ["filter" => "
 // Admin routes
 $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "AdminController::index");
-    $routes->get("users", "AdminController::users"); //admin/users
-    $routes->get("user/{id}", "AdminController::users"); //admin/user/{id}
 });
 // Siswa routes
 $routes->group("siswa", ["filter" => "auth"], function ($routes) {

@@ -8,7 +8,10 @@
     <div class="heroe">
 
         <h4>
-            <center>Sistem Rekomendasi Siswa untuk Penempatan Prakerin</center>
+            <center>
+                Sistem Rekomendasi Siswa untuk Penempatan Prakerin
+                <h4>SMK Walisongo Pecangaan</h4>
+            </center>
         </h4>
 
     </div>

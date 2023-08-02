@@ -40,6 +40,12 @@
                     </li>
                     <li class="nav-item">
                         <a href="<?= base_url('admin') ?>" class="nav-link">
+                            <i class="nav-icon fas fa-building"></i>
+                            <p>Data DU/DI</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url('admin') ?>" class="nav-link">
                             <i class="nav-icon fas fa-server"></i>
                             <p>Data Kriteria</p>
                         </a>
@@ -126,10 +132,21 @@
                 <?php endif; ?>
                 <?php if (session()->get('role') == "gurubk") : ?>
                     <li class="nav-item">
-                        <a href="<?= base_url('admin') ?>" class="nav-link">
+                        <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-file-invoice"></i>
-                            <p>Penilaian Presensi</p>
+                            <p>
+                                Penilaian
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Presensi</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 <?php endif; ?>
                 <?php if (session()->get('role') == "kepsek") : ?>

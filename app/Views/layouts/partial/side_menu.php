@@ -27,7 +27,7 @@
                 <?php if (session()->get('role') == "admin") : ?>
                     <!-- management user -->
                     <li class="nav-item">
-                        <a href="<?= base_url('/users') ?>" class="nav-link">
+                        <a href="<?= base_url('admin') ?>" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>Users</p>
                         </a>

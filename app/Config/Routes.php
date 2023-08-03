@@ -46,6 +46,12 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
 
     // students
     $routes->get('students', 'AdminController::students');
+
+    // DUDI
+    $routes->get('dudi', 'AdminController::dudi');
+
+    // criterias
+    $routes->get('criterias', 'AdminController::criterias');
 });
 // Siswa routes
 $routes->group("siswa", ["filter" => "auth"], function ($routes) {

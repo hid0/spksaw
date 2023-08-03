@@ -135,5 +135,35 @@ class AdminController extends BaseController
   public function students()
   {
     // student data
+    $db = \Config\Database::connect();
+    $query = $db->table('tbl_siswa');
+    $query->select('*');
+    $query->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas');
+    $data = [
+      'students' => $query->get(),
+    ];
+    return view('admin/students', $data);
+  }
+
+  public function dudi()
+  {
+    $db = \Config\Database::connect();
+    $query = $db->table('tbl_dudi');
+    $query->select('*');
+    $query->join('tbl_jurusan', 'tbl_jurusan.id_jurusan = tbl_dudi.id_jurusan');
+    $data = [
+      'dudi' => $query->get(),
+    ];
+    return view('admin/dudi', $data);
+  }
+
+  public function criterias()
+  {
+    $db = \Config\Database::connect();
+    $query = $db->table('tbl_kriteria');
+    $data = [
+      'criterias' => $query->get(),
+    ];
+    return view('admin/criterias', $data);
   }
 }

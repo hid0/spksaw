@@ -33,19 +33,19 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url('admin') ?>" class="nav-link">
+                        <a href="<?= base_url('admin/students') ?>" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
                             <p>Data Siswa</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url('admin') ?>" class="nav-link">
+                        <a href="<?= base_url('admin/dudi') ?>" class="nav-link">
                             <i class="nav-icon fas fa-building"></i>
                             <p>Data DU/DI</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url('admin') ?>" class="nav-link">
+                        <a href="<?= base_url('admin/criterias') ?>" class="nav-link">
                             <i class="nav-icon fas fa-server"></i>
                             <p>Data Kriteria</p>
                         </a>

@@ -17,4 +17,12 @@ class KoordinatorController extends BaseController
     {
         return view("koordinator/dashboard");
     }
+    public function dokumen()
+    {
+        return view("koordinator/dokumen");
+    }
+    public function rapor()
+    {
+        return view("koordinator/rapor");
+    }
 }

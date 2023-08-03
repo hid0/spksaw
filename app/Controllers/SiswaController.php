@@ -17,4 +17,9 @@ class SiswaController extends BaseController
     {
         return view("siswa/dashboard");
     }
+
+    public function biodata()
+    {
+        return view("siswa/biodata");
+    }
 }

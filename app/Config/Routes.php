@@ -56,10 +56,17 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
 // Siswa routes
 $routes->group("siswa", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "SiswaController::index");
+
+    // biodata
+    $routes->get('biodata', 'SiswaController::biodata');
 });
 // Koordinator routes
 $routes->group("koordinator", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "KoordinatorController::index");
+    // kelengkapan data
+    $routes->get('dokumen', 'KoordinatorController::dokumen');
+    // input nilai rapor
+    $routes->get('rapor', 'KoordinatorController::rapor');
 });
 // Hubin routes
 $routes->group("hubin", ["filter" => "auth"], function ($routes) {

@@ -102,7 +102,7 @@ class AdminController extends BaseController
     }
   }
 
-  public function user($id)
+  public function edit_user($id)
   {
     $users = new UserModel();
 
@@ -112,8 +112,28 @@ class AdminController extends BaseController
     return view('admin/user_edit', $data);
   }
 
-  public function update($id)
+  public function update_user($id)
   {
     helper(['form', 'url']);
+  }
+
+  public function del_user($id)
+  {
+    $users = new UserModel();
+
+    $user = $users->find($id);
+    if ($user) {
+      $users->delete($id);
+
+      session()->setFlashdata('message', 'Pengguna berhasil dihapus!');
+      return redirect()->to(base_url('admin/users'));
+    } else {
+      // return view('admin/users', ['validation' => $this->validator, 'users' => $users->findAll()]);
+    }
+  }
+
+  public function students()
+  {
+    // student data
   }
 }

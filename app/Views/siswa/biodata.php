@@ -165,7 +165,7 @@
                     </div>
 
                     <div class="card-footer">
-                        Upload dokumen dalam bentuk gambar. Upload file sesuai kolom yang sudah tersedia.
+                        Upload dokumen dalam bentuk file (.pdf). Upload file sesuai kolom yang sudah tersedia.
                     </div>
                 </div>
 

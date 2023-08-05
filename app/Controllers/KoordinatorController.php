@@ -25,4 +25,8 @@ class KoordinatorController extends BaseController
     {
         return view("koordinator/rapor");
     }
+    public function rekapNilai()
+    {
+        return view("koordinator/rekapNilai");
+    }
 }

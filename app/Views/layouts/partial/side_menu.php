@@ -73,6 +73,12 @@
                                     <p>Nilai Rapor</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('koordinator/rekapNilai') ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Rekap Nilai</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 <?php endif; ?>
@@ -87,28 +93,34 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="" class="nav-link">
+                                <a href="<?= base_url('hubin/tesTulis') ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Tes Tertulis</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('hubin/tesWawancara') ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Tes Wawancara</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">
+                                <a href="<?= base_url('hubin/rekapNilai') ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Tes Tertulis</p>
+                                    <p>Rekap Nilai</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url('admin') ?>" class="nav-link">
+                        <a href="<?= base_url('hubin/hitung') ?>" class="nav-link">
                             <i class="nav-icon fas fa-server"></i>
                             <p>Hitung SAW</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-file-invoice"></i>
+                            <i class="nav-icon fas fa-solid fa-table"></i>
                             <p>
                                 Hasil SAW
                                 <i class="right fas fa-angle-left"></i>
@@ -116,15 +128,9 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="" class="nav-link">
+                                <a href="<?= base_url('hubin/lihatHasil') ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Lihat Hasil</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Cetak</p>
                                 </a>
                             </li>
                         </ul>
@@ -144,6 +150,12 @@
                                 <a href="" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Presensi</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('koordinator/rekapNilai') ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Rekap Nilai</p>
                                 </a>
                             </li>
                         </ul>

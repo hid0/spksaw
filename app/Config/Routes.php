@@ -67,10 +67,26 @@ $routes->group("koordinator", ["filter" => "auth"], function ($routes) {
     $routes->get('dokumen', 'KoordinatorController::dokumen');
     // input nilai rapor
     $routes->get('rapor', 'KoordinatorController::rapor');
+    // lihat rekap nilai
+    $routes->get('rekapNilai', 'KoordinatorController::rekapNilai');
 });
 // Hubin routes
 $routes->group("hubin", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "HubinController::index");
+    // input nilai tes tertulis
+    $routes->get('tesTulis', 'HubinController::tesTulis');
+    // input nilai tes tertulis
+    $routes->get('tesWawancara', 'HubinController::tesWawancara');
+    // lihat rekap nilai
+    $routes->get('rekapNilai', 'HubinController::rekapNilai');
+    // hitung SAW
+    $routes->get('hitung', 'HubinController::hitung');
+    // Lihat Hasil
+    $routes->get('lihatHasil', 'HubinController::lihatHasil');
+    // detail Hasil
+    $routes->get('detailHasil', 'HubinController::detailHasil');
+    // cetak laporan
+    $routes->get('cetak', 'HubinController::cetak');
 });
 // Gurubk routes
 $routes->group("gurubk", ["filter" => "auth"], function ($routes) {

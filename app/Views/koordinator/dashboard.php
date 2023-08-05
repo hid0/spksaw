@@ -21,6 +21,9 @@
                 <li>
                     Untuk menginput rata-rata nilai mapel produktif calon peserta Prakerin pada sub-menu <a href="../koordinator/rapor" target="_parent" rel="noopener noreferrer">Nilai Rapor</a> pada menu Penilaian.
                 </li>
+                <li>
+                    Untuk melihat Rekapitulasi penilaian calon peserta Prakerin pada sub-menu <a href="../koordinator/rekapNilai" target="_parent" rel="noopener noreferrer">Rekap Nilai</a> pada menu Penilaian.
+                </li>
             </ul>
         </div>
 

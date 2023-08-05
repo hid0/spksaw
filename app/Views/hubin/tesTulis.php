@@ -5,7 +5,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Penilaian | Rata-rata nilai mata pelajaran Produktif semester 1 s/d 3</h3>
+            <h3 class="card-title">Penilaian | Tes Tertulis</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -21,7 +21,7 @@
                             <th>NIS</th>
                             <th>Nama Lengkap</th>
                             <th>Jurusan</th>
-                            <th>Nilai Rapor</th>
+                            <th>Nilai Tes Tertulis</th>
                         </tr>
                     </thead>
                     <tbody>

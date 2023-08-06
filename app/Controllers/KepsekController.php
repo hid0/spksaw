@@ -17,4 +17,16 @@ class KepsekController extends BaseController
     {
         return view("kepsek/dashboard");
     }
+    public function lihatHasil()
+    {
+        return view("kepsek/lihatHasil");
+    }
+    public function detailHasil()
+    {
+        return view("kepsek/detailHasil");
+    }
+    public function cetak()
+    {
+        return view("kepsek/cetak");
+    }
 }

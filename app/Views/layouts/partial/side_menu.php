@@ -172,7 +172,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="" class="nav-link">
+                                <a href="<?= base_url('kepsek/lihatHasil') ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Lihat Hasil</p>
                                 </a>

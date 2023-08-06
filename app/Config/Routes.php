@@ -95,6 +95,12 @@ $routes->group("gurubk", ["filter" => "auth"], function ($routes) {
 // Kepsek routes
 $routes->group("kepsek", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "KepsekController::index");
+    //lihat Hasil
+    $routes->get('lihatHasil', 'KepsekController::lihatHasil');
+    // detail Hasil
+    $routes->get('detailHasil', 'KepsekController::detailHasil');
+    // cetak laporan
+    $routes->get('cetak', 'KepsekController::cetak');
 });
 $routes->get('logout', 'UserController::logout');
 

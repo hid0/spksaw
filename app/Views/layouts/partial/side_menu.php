@@ -147,13 +147,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="" class="nav-link">
+                                <a href="<?= base_url('gurubk/presensi') ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Presensi</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url('koordinator/rekapNilai') ?>" class="nav-link">
+                                <a href="<?= base_url('gurubk/rekapNilai') ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Rekap Nilai</p>
                                 </a>

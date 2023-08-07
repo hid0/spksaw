@@ -91,6 +91,10 @@ $routes->group("hubin", ["filter" => "auth"], function ($routes) {
 // Gurubk routes
 $routes->group("gurubk", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "GurubkController::index");
+    // input jumlah alpa
+    $routes->get('presensi', 'GurubkController::presensi');
+    // lihat rekap nilai
+    $routes->get('rekapNilai', 'GurubkController::rekapNilai');
 });
 // Kepsek routes
 $routes->group("kepsek", ["filter" => "auth"], function ($routes) {

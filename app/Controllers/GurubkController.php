@@ -17,4 +17,12 @@ class GurubkController extends BaseController
     {
         return view("gurubk/dashboard");
     }
+    public function presensi()
+    {
+        return view("gurubk/presensi");
+    }
+    public function rekapNilai()
+    {
+        return view("gurubk/rekapNilai");
+    }
 }

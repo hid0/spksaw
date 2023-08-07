@@ -26,15 +26,15 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th>1</th>
-                            <th>2980</th>
-                            <th>Fajar Dwi Guntoro</th>
-                            <th>TJKT</th>
-                            <th>
+                            <td>1</td>
+                            <td>2980</td>
+                            <td>Fajar Dwi Guntoro</td>
+                            <td>TJKT</td>
+                            <td>
                                 <div class="form-group">
                                     <input type="text" class="form-control my-colorpicker1 colorpicker-element" data-colorpicker-id="1" data-original-title="" title="">
                                 </div>
-                            </th>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

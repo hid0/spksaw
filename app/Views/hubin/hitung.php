@@ -30,15 +30,15 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th>1</th>
-                            <th>2980</th>
-                            <th>Fajar Dwi Guntoro</th>
-                            <th>TJKT</th>
-                            <th>70</th>
-                            <th>91.3</th>
-                            <th>82.5</th>
-                            <th>90.4</th>
-                            <th>1</th>
+                            <td>1</td>
+                            <td>2980</td>
+                            <td>Fajar Dwi Guntoro</td>
+                            <td>TJKT</td>
+                            <td>70</td>
+                            <td>91.3</td>
+                            <td>82.5</td>
+                            <td>90.4</td>
+                            <td>1</td>
                         </tr>
                     </tbody>
                 </table>
@@ -93,15 +93,15 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th>1</th>
-                            <th>2980</th>
-                            <th>Fajar Dwi Guntoro</th>
-                            <th>TJKT</th>
-                            <th>0.7</th>
-                            <th>0.9860</th>
-                            <th>0.9270</th>
-                            <th>1</th>
-                            <th>1</th>
+                            <td>1</td>
+                            <td>2980</td>
+                            <td>Fajar Dwi Guntoro</td>
+                            <td>TJKT</td>
+                            <td>0.7</td>
+                            <td>0.9860</td>
+                            <td>0.9270</td>
+                            <td>1</td>
+                            <td>1</td>
                         </tr>
                     </tbody>
                 </table>
@@ -170,11 +170,11 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th>1</th>
-                            <th>2980</th>
-                            <th>Fajar Dwi Guntoro</th>
-                            <th>TJKT</th>
-                            <th>0.941237168</th>
+                            <td>1</td>
+                            <td>2980</td>
+                            <td>Fajar Dwi Guntoro</td>
+                            <td>TJKT</td>
+                            <td>0.941237168</td>
                         </tr>
                     </tbody>
                 </table>

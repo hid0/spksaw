@@ -23,14 +23,31 @@
                             <th>T.Badan</th>
                             <th>B.Badan</th>
                             <th>Formulir</th>
-                            <th>Raport</th>
+                            <th>Rapor</th>
                             <th>Vaksin</th>
                             <th>Surat Kesehatan</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        <tr>
+                            <td>1</td>
+                            <td>2980</td>
+                            <td>Fajar Dwi Guntoro</td>
+                            <td>158</td>
+                            <td>55</td>
+                            <td><a href="smkw9jepara.sch.id">Link Formulir</a></td>
+                            <td><a href="smkw9jepara.sch.id">Link Rapor</a></td>
+                            <td><a href="smkw9jepara.sch.id">Link Vaksin</a></td>
+                            <td><a href="smkw9jepara.sch.id">Link Surat Kesehatan</a></td>
+                            <td>
+                                <select class="form-control">
+                                    <option>Lengkap</option>
+                                    <option>Kurang Lengkap</option>
+                                    <option>Tidak Lengkap</option>
+                                </select>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <?php if (!empty(session()->getFlashdata('message'))) : ?>

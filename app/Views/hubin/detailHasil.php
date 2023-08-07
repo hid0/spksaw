@@ -29,11 +29,11 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th>1</th>
-                                    <th>2980</th>
-                                    <th>Fajar Dwi Guntoro</th>
-                                    <th>0.941237168</th>
-                                    <th>1</th>
+                                    <td>1</td>
+                                    <td>2980</td>
+                                    <td>Fajar Dwi Guntoro</td>
+                                    <td>0.941237168</td>
+                                    <td>1</td>
                                 </tr>
                             </tbody>
                         </table>

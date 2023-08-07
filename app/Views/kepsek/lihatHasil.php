@@ -25,20 +25,20 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th>1</th>
-                            <th>PT. Telkom Jepara</th>
-                            <th>TJKT</th>
-                            <th>
+                            <td>1</td>
+                            <td>PT. Telkom Jepara</td>
+                            <td>TJKT</td>
+                            <td>
                                 <a href="<?= base_url('kepsek/detailHasil/') ?>" class="btn-sm btn-success" title="Detail"><i class="fas fa-info-circle"></i></a>
-                            </th>
+                            </td>
                         </tr>
                         <tr>
-                            <th>2</th>
-                            <th>PT. HINO Cemaco Kudus</th>
-                            <th>TO</th>
-                            <th>
-                                <a href="<?= base_url('kepsek/detailHasil/') ?>" class="btn-sm btn-success" title="Detail"><i class="fas fa-info-circle"></i></a>
-                            </th>
+                            <td>2</td>
+                            <td>PT. HINO Cemaco Kudus</td>
+                            <td>TO</td>
+                            <td>
+                                <a href="<?= base_url('kepsektd/detailHasil/') ?>" class="btn-sm btn-success" title="Detail"><i class="fas fa-info-circle"></i></a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

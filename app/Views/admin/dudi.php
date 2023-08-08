@@ -31,7 +31,9 @@
                   <td><?= $no++ ?>.</td>
                   <td><?= $d->nm_dudi ?></td>
                   <td><?= $d->alias_jurusan ?></td>
-                  <td></td>
+                  <td>
+                    <a href="<?= base_url('admin/dudi/' . $d->id_dudi) ?>" class="btn-sm btn-warning" title="Daftar Anak"><i class="fas fa-info-circle"></i> Detail</a>
+                  </td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
@@ -59,52 +61,32 @@
 </div>
 
 <!-- Modal -->
-<!-- <div class="modal fade" id="AddDUDIModal" tabindex="-1" role="dialog" aria-labelledby="AddDUDIModalLabel" aria-hidden="true">
+<div class="modal fade" id="AddDUDIModal" tabindex="-1" role="dialog" aria-labelledby="AddDUDIModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
-    <form class="modal-content" method="POST" action="<?= base_url('admin/user') ?>" autocomplete="off">
+    <form class="modal-content" method="POST" action="<?= base_url('admin/dudi/add') ?>" autocomplete="off">
       <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLabel">Tambah Pengguna</h4>
+        <h4 class="modal-title" id="exampleModalLabel">Tambah DUDI</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="form-group row">
-          <label for="email" class="col-sm-2 col-form-label">Email</label>
+          <label for="nm_dudi" class="col-sm-2 col-form-label">Nama DUDI</label>
           <div class="col-sm-10">
-            <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+            <input type="text" name="nm_dudi" class="form-control" id="nm_dudi" placeholder="Nama DUDI">
           </div>
         </div>
         <div class="form-group row">
-          <label for="name" class="col-sm-2 col-form-label">Nama Lengkap</label>
+          <label for="id_jurusan" class="col-sm-2 col-form-label">Jurusan</label>
           <div class="col-sm-10">
-            <input type="text" name="name" class="form-control" id="name" placeholder="Nama Lengkap">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="phone_no" class="col-sm-2 col-form-label">Nomer HP</label>
-          <div class="col-sm-10">
-            <input type="text" name="phone_no" class="form-control" id="phone_no" placeholder="087*********">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="role" class="col-sm-2 col-form-label">Role</label>
-          <div class="col-sm-10">
-            <select name="role" id="role" class="form-control">
-              <option value="">-- Pilih Role --</option>
-              <option value="admin">Admin</option>
-              <option value="siswa">Siswa</option>
-              <option value="koordinator">Koordinator</option>
-              <option value="hubin">Hubin</option>
-              <option value="gurubk">Guru BK</option>
-              <option value="kepsek">Kepala Sekolah</option>
+            <select name="id_jurusan" id="id_jurusan" class="form-control">
+              <option value="">-- Pilih Jurusan --</option>
+              <option value="1">Desain Produksi Kriya</option>
+              <option value="2">Teknik Otomotif</option>
+              <option value="3">Teknik Jaringan Komputer dan Telekomunikasi</option>
+              <option value="4">Akuntansi Keuangan Lembaga</option>
             </select>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="password" class="col-sm-2 col-form-label">Password</label>
-          <div class="col-sm-10">
-            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
           </div>
         </div>
       </div>
@@ -114,5 +96,5 @@
       </div>
     </form>
   </div>
-</div> -->
+</div>
 <?= $this->endSection() ?>

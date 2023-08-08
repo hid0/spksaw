@@ -83,13 +83,23 @@ class AdminController extends BaseController
       // model init
       $user = new UserModel();
 
-      $user->insert([
+      $data = $user->insert([
         'name' => $this->request->getPost('name'),
         'email' => $this->request->getPost('email'),
         'phone_no' => $this->request->getPost('phone_no'),
         'role' => $this->request->getPost('role'),
         'password' => password_hash($this->request->getPost("password"), PASSWORD_BCRYPT),
       ]);
+
+      // while create student user
+      // if ($this->request->getPost('role') === 'siswa') {
+      //   $studentData = [
+      //     'id_user' => $data['id'],
+      //     // 'nis'
+      //   ];
+      //   $db = \Config\Database::connect();
+      //   $query = $db->table('tbl_siswa');
+      // }
 
 
       // flash message
@@ -157,6 +167,57 @@ class AdminController extends BaseController
     return view('admin/dudi', $data);
   }
 
+  public function add_dudi()
+  {
+    // add DUDI
+    $validation = $this->validate(
+      [
+        'id_jurusan' =>
+        [
+          'rules' => 'required',
+          'errors' =>
+          [
+            'required' => 'wajib masukkan nama!',
+          ]
+        ],
+        'nm_dudi' => [
+          'rules' => 'required|min_length[4]',
+          'errors' =>
+          [
+            'required' => 'wajib masukkan nama!',
+            'min_length' => 'minimal 4 karakter!'
+          ]
+        ]
+      ]
+    );
+
+    if ($validation) {
+      $data = [
+        'id_jurusan' => $this->request->getPost('id_jurusan'),
+        'nm_dudi' => $this->request->getPost('nm_dudi'),
+      ];
+
+      $db = \Config\Database::connect();
+      $builder = $db->table('tbl_dudi');
+      $builder->insert($data);
+      // flash message
+      session()->setFlashdata('message', 'DUDI berhasil ditambahkan');
+      // var_dump($this->request);
+      return redirect()->to(base_url('admin/dudi'));
+    } else {
+      $db = \Config\Database::connect();
+      $query = $db->table('tbl_dudi');
+      $query->select('*');
+      $query->join('tbl_jurusan', 'tbl_jurusan.id_jurusan = tbl_dudi.id_jurusan');
+      $data = [
+        'dudi' => $query->get(),
+        'validation' => $this->validator,
+      ];
+      return view('admin/dudi', $data);
+      // return view('admin/users', ['validation' => $this->validator, 'users' => $user->findAll(),]);
+    }
+  }
+
   public function criterias()
   {
     $db = \Config\Database::connect();
@@ -165,5 +226,60 @@ class AdminController extends BaseController
       'criterias' => $query->get(),
     ];
     return view('admin/criterias', $data);
+  }
+
+  public function add_criteria()
+  {
+    // add criteria
+    $validation = $this->validate(
+      [
+        'nm_kriteria' =>
+        [
+          'rules' => 'required',
+          'errors' =>
+          [
+            'required' => 'wajib masukkan nama kriteria!',
+          ]
+        ],
+        'tipe_kriteria' => [
+          'rules' => 'required',
+          'errors' =>
+          [
+            'required' => 'wajib masukkan tipe!',
+          ]
+        ],
+        'bobot_kriteria' => [
+          'rules' => 'required',
+          'errors' =>
+          [
+            'required' => 'wajib masukkan bobot!',
+          ]
+        ]
+      ]
+    );
+
+    $db = \Config\Database::connect();
+    $query = $db->table('tbl_kriteria');
+
+    // validation
+    if ($validation) {
+      // insert data
+      $data = [
+        'nm_kriteria' => $this->request->getPost('nm_kriteria'),
+        'tipe_kriteria' => $this->request->getPost('tipe_kriteria'),
+        'bobot_kriteria' => $this->request->getPost('bobot_kriteria'),
+      ];
+
+      $query->insert($data);
+      session()->setFlashdata('message', 'Kriteria berhasil ditambahkan');
+      // var_dump($this->request);
+      return redirect()->to(base_url('admin/criterias'));
+    } else {
+      $data = [
+        'criterias' => $query->get(),
+        'validation' => $this->validator,
+      ];
+      return view('admin/criterias', $data);
+    }
   }
 }

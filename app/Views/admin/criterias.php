@@ -61,52 +61,36 @@
 </div>
 
 <!-- Modal -->
-<!-- <div class="modal fade" id="AddKriteriaModal" tabindex="-1" role="dialog" aria-labelledby="AddKriteriaModalLabel" aria-hidden="true">
+<div class="modal fade" id="AddKriteriaModal" tabindex="-1" role="dialog" aria-labelledby="AddKriteriaModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
-    <form class="modal-content" method="POST" action="<?= base_url('admin/user') ?>" autocomplete="off">
+    <form class="modal-content" method="POST" action="<?= base_url('admin/criteria/add') ?>" autocomplete="off">
       <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLabel">Tambah Pengguna</h4>
+        <h4 class="modal-title" id="exampleModalLabel">Tambah Kriteria</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="form-group row">
-          <label for="email" class="col-sm-2 col-form-label">Email</label>
+          <label for="kriteria" class="col-sm-2 col-form-label">Nama Kriteria</label>
           <div class="col-sm-10">
-            <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+            <input type="text" name="nm_kriteria" class="form-control" id="kriteria" placeholder="Nama Kriteria">
           </div>
         </div>
         <div class="form-group row">
-          <label for="name" class="col-sm-2 col-form-label">Nama Lengkap</label>
+          <label for="tipe_kriteria" class="col-sm-2 col-form-label">Tipe Kriteria</label>
           <div class="col-sm-10">
-            <input type="text" name="name" class="form-control" id="name" placeholder="Nama Lengkap">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="phone_no" class="col-sm-2 col-form-label">Nomer HP</label>
-          <div class="col-sm-10">
-            <input type="text" name="phone_no" class="form-control" id="phone_no" placeholder="087*********">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="role" class="col-sm-2 col-form-label">Role</label>
-          <div class="col-sm-10">
-            <select name="role" id="role" class="form-control">
-              <option value="">-- Pilih Role --</option>
-              <option value="admin">Admin</option>
-              <option value="siswa">Siswa</option>
-              <option value="koordinator">Koordinator</option>
-              <option value="hubin">Hubin</option>
-              <option value="gurubk">Guru BK</option>
-              <option value="kepsek">Kepala Sekolah</option>
+            <select name="tipe_kriteria" id="tipe_kriteria" class="form-control">
+              <option value="">-- Pilih Tipe Kriteria --</option>
+              <option value="benefit">Benefit</option>
+              <option value="cost">Cost</option>
             </select>
           </div>
         </div>
         <div class="form-group row">
-          <label for="password" class="col-sm-2 col-form-label">Password</label>
+          <label for="bobot" class="col-sm-2 col-form-label">Bobot</label>
           <div class="col-sm-10">
-            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+            <input type="number" step="any" name="bobot_kriteria" class="form-control" id="bobot" placeholder="0.3">
           </div>
         </div>
       </div>
@@ -116,5 +100,5 @@
       </div>
     </form>
   </div>
-</div> -->
+</div>
 <?= $this->endSection() ?>

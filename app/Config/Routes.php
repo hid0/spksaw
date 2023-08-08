@@ -46,6 +46,7 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
 
     // students
     $routes->get('students', 'AdminController::students');
+    $routes->post('student/add', 'AdminController::add_student');
 
     // DUDI
     $routes->get('dudi', 'AdminController::dudi');

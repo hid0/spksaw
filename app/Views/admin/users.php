@@ -100,7 +100,7 @@
             <select name="role" id="role" class="form-control">
               <option value="">-- Pilih Role --</option>
               <option value="admin">Admin</option>
-              <option value="siswa">Siswa</option>
+              <!-- <option value="siswa">Siswa</option> -->
               <option value="koordinator">Koordinator</option>
               <option value="hubin">Hubin</option>
               <option value="gurubk">Guru BK</option>

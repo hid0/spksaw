@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\UserModel;
+use CodeIgniter\Database\RawSql;
 
 class AdminController extends BaseController
 {
@@ -151,8 +152,110 @@ class AdminController extends BaseController
     $query->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas');
     $data = [
       'students' => $query->get(),
+      'class' => $db->table('tbl_kelas')->select()->get(),
     ];
     return view('admin/students', $data);
+  }
+
+  public function add_student()
+  {
+    helper(['my_helper', 'date']);
+
+    $validation = $this->validate(
+      [
+        'nis' =>
+        [
+          'rules' => 'required|numeric',
+          'errors' =>
+          [
+            'required' => 'wajib masukkan NIS!',
+            'numeric' => 'jangan masukkan selain angka!',
+          ]
+        ],
+        'name' => [
+          'rules' => 'required|min_length[4]',
+          'errors' =>
+          [
+            'required' => 'wajib masukkan nama!',
+            'min_length' => 'minimal 4 karakter!'
+          ]
+        ],
+        'tgl_lahir' => [
+          'rules' => 'required',
+          'errors' =>
+          [
+            'required' => 'wajib masukkan nama!',
+          ]
+        ],
+        'id_kelas' => [
+          'rules' => 'required',
+          'errors' =>
+          [
+            'required' => 'wajib masukkan nama!',
+          ]
+        ],
+        'email' => [
+          'rules' => 'required|valid_email',
+          'errors' =>
+          [
+            'required' => 'wajib masukkan nama!',
+            'valid_email' => 'pastikan email anda benar!',
+          ]
+        ],
+        'phone_no' => [
+          'rules' => 'required|numeric',
+          'errors' =>
+          [
+            'required' => 'wajib masukkan nama!',
+            'numeric' => 'jangan masukkan selain angka!',
+          ]
+        ],
+      ]
+    );
+
+    $db = \Config\Database::connect();
+    $query1 = $db->table('users');
+    $query2 = $db->table('tbl_siswa');
+
+    if ($validation) {
+      // insert users data
+      $data1 = [
+        'id' => new RawSql('DEFAULT'),
+        'name' => ucwords(htmlspecialchars($this->request->getPost('name'))),
+        'email' => $this->request->getPost('email'),
+        'phone_no' => $this->request->getPost('phone_no'),
+        'role' => 'siswa',
+        'password' => password_hash(genPasswd($this->request->getPost('tgl_lahir')), PASSWORD_BCRYPT),
+        // 'password' => $this->request->getPost('tgl_lahir'),
+        'created_at' => now()
+      ];
+      $query1->insert($data1);
+      // dd($data1);
+
+      // insert student data
+      $data2 = [
+        'id_user' => $data1['id'],
+        'nis' => $this->request->getPost('nis'),
+        'name' => ucwords(htmlspecialchars($this->request->getPost('name'))),
+        'tgl_lahir' => $this->request->getPost('tgl_lahir'),
+        'id_kelas' => $this->request->getPost('id_kelas'),
+        'email' => $this->request->getPost('email'),
+        'phone_no' => $this->request->getPost('phone_no'),
+      ];
+      $query2->insert($data2);
+      // dd($data2);
+
+      session()->setFlashdata('message', 'Siswa berhasil ditambahkan');
+      // var_dump($this->request);
+      return redirect()->to(base_url('admin/students'));
+    } else {
+      $data = [
+        'class' => $db->table('tbl_kelas')->select()->get(),
+        'students' => $query2->select()->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas')->get(),
+        'validation' => $this->validator,
+      ];
+      return view('admin/students', $data);
+    }
   }
 
   public function dudi()

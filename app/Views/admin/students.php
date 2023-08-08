@@ -71,18 +71,18 @@
 <!-- Modal -->
 <div class="modal fade" id="AddStudentModal" tabindex="-1" role="dialog" aria-labelledby="AddStudentModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
-    <form class="modal-content" method="POST" action="<?= base_url('admin/user') ?>" autocomplete="off">
+    <form class="modal-content" method="POST" action="<?= base_url('admin/student/add') ?>" autocomplete="off">
       <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLabel">Tambah Pengguna</h4>
+        <h4 class="modal-title" id="exampleModalLabel">Tambah Siswa</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="form-group row">
-          <label for="email" class="col-sm-2 col-form-label">Email</label>
+          <label for="nis" class="col-sm-2 col-form-label">NIS</label>
           <div class="col-sm-10">
-            <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+            <input type="number" name="nis" class="form-control" id="nis" placeholder="NIS">
           </div>
         </div>
         <div class="form-group row">
@@ -91,30 +91,41 @@
             <input type="text" name="name" class="form-control" id="name" placeholder="Nama Lengkap">
           </div>
         </div>
+        <!-- <div class="form-group mb-4">
+          <div class="datepicker date input-group">
+            <input type="text" placeholder="Choose Date" class="form-control" id="fecha1">
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div> -->
         <div class="form-group row">
-          <label for="phone_no" class="col-sm-2 col-form-label">Nomer HP</label>
+          <label for="tgl_lahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
           <div class="col-sm-10">
-            <input type="text" name="phone_no" class="form-control" id="phone_no" placeholder="087*********">
+            <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir" placeholder="02/02/2009">
           </div>
         </div>
         <div class="form-group row">
-          <label for="role" class="col-sm-2 col-form-label">Role</label>
+          <label for="kelas" class="col-sm-2 col-form-label">Kelas</label>
           <div class="col-sm-10">
-            <select name="role" id="role" class="form-control">
-              <option value="">-- Pilih Role --</option>
-              <option value="admin">Admin</option>
-              <!-- <option value="siswa">Siswa</option> -->
-              <option value="koordinator">Koordinator</option>
-              <option value="hubin">Hubin</option>
-              <option value="gurubk">Guru BK</option>
-              <option value="kepsek">Kepala Sekolah</option>
+            <select name="id_kelas" id="kelas" class="form-control">
+              <option value="">-- Pilih Kelas --</option>
+              <?php foreach ($class->getResult() as $class) : ?>
+                <option value="<?= $class->id_kelas; ?>"><?= $class->nm_kelas; ?></option>
+              <?php endforeach; ?>
             </select>
           </div>
         </div>
         <div class="form-group row">
-          <label for="password" class="col-sm-2 col-form-label">Password</label>
+          <label for="email" class="col-sm-2 col-form-label">Email</label>
           <div class="col-sm-10">
-            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+            <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="phone_no" class="col-sm-2 col-form-label">Nomer HP</label>
+          <div class="col-sm-10">
+            <input type="text" name="phone_no" class="form-control" id="phone_no" placeholder="087*********">
           </div>
         </div>
       </div>
@@ -125,4 +136,19 @@
     </form>
   </div>
 </div>
+<?= $this->endSection() ?>
+
+<?= $this->section("css") ?>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css"> -->
+<?= $this->endSection() ?>
+
+<?= $this->section("js") ?>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+$(function () {
+$('.datepicker').datepicker({
+language: "es",
+autoclose: true,
+format: "dd/mm/yyyy"
+});
+}); -->
 <?= $this->endSection() ?>

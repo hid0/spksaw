@@ -321,6 +321,16 @@ class AdminController extends BaseController
     }
   }
 
+  public function detail_dudi()
+  {
+    // detail show all
+    $db = \Config\Database::connect();
+    $request = \Config\Services::request();
+    return view('admin/dudi_detail', [
+      'students' => $db->table('tbl_siswa')->select()->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'inner')->join('tbl_jurusan', 'tbl_kelas.id_jurusan = tbl_jurusan.id_jurusan', 'inner')->where('tbl_jurusan.id_jurusan', $request->getUri()->getSegment(3))->get(),
+    ]);
+  }
+
   public function criterias()
   {
     $db = \Config\Database::connect();

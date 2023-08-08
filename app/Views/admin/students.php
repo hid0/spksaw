@@ -39,8 +39,8 @@
                   <td><?= $st->nm_kelas ?></td>
                   <td><?= $st->email ?></td>
                   <td><?= $st->phone_no ?? '-' ?></td>
-                  <td>
-                    <a href="<?= base_url('admin/student/' . $st->id_siswa) ?>" class="btn-sm btn-success" title="Detail"><i class="fas fa-info-circle"></i></a>
+                  <td class="text-center">
+                    <a href="<?= base_url('admin/student/' . $st->id_siswa) ?>" class="btn-sm btn-success" title="Detail"><i class="fas fa-info-circle"></i> Detail</a>
                   </td>
                 </tr>
               <?php endforeach; ?>
@@ -69,7 +69,7 @@
 </div>
 
 <!-- Modal -->
-<!-- <div class="modal fade" id="AddStudentModal" tabindex="-1" role="dialog" aria-labelledby="AddStudentModalLabel" aria-hidden="true">
+<div class="modal fade" id="AddStudentModal" tabindex="-1" role="dialog" aria-labelledby="AddStudentModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <form class="modal-content" method="POST" action="<?= base_url('admin/user') ?>" autocomplete="off">
       <div class="modal-header">
@@ -103,7 +103,7 @@
             <select name="role" id="role" class="form-control">
               <option value="">-- Pilih Role --</option>
               <option value="admin">Admin</option>
-              <option value="siswa">Siswa</option>
+              <!-- <option value="siswa">Siswa</option> -->
               <option value="koordinator">Koordinator</option>
               <option value="hubin">Hubin</option>
               <option value="gurubk">Guru BK</option>
@@ -124,5 +124,5 @@
       </div>
     </form>
   </div>
-</div> -->
+</div>
 <?= $this->endSection() ?>

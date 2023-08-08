@@ -31,7 +31,9 @@
                   <td><?= $no++ ?>.</td>
                   <td><?= $d->nm_dudi ?></td>
                   <td><?= $d->alias_jurusan ?></td>
-                  <td></td>
+                  <td>
+                    <a href="<?= base_url('admin/dudi/' . $d->id_dudi) ?>" class="btn-sm btn-warning" title="Daftar Anak"><i class="fas fa-info-circle"></i> Detail</a>
+                  </td>
                 </tr>
               <?php endforeach; ?>
             </tbody>

@@ -18,13 +18,13 @@
 
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item">
-                    <a href="<?= base_url('admin') ?>" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
                 <?php if (session()->get('role') == "admin") : ?>
+                    <li class="nav-item">
+                        <a href="<?= base_url('admin') ?>" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
                     <!-- management user -->
                     <li class="nav-item">
                         <a href="<?= base_url('admin/users') ?>" class="nav-link">
@@ -52,6 +52,12 @@
                     </li>
                 <?php endif; ?>
                 <?php if (session()->get('role') == "koordinator") : ?>
+                    <li class="nav-item">
+                        <a href="<?= base_url('koordinator') ?>" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-file-invoice"></i>
@@ -83,6 +89,12 @@
                     </li>
                 <?php endif; ?>
                 <?php if (session()->get('role') == "hubin") : ?>
+                    <li class="nav-item">
+                        <a href="<?= base_url('hubin') ?>" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-file-invoice"></i>
@@ -138,6 +150,12 @@
                 <?php endif; ?>
                 <?php if (session()->get('role') == "gurubk") : ?>
                     <li class="nav-item">
+                        <a href="<?= base_url('gurubk') ?>" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-file-invoice"></i>
                             <p>
@@ -163,6 +181,12 @@
                 <?php endif; ?>
                 <?php if (session()->get('role') == "kepsek") : ?>
                     <li class="nav-item">
+                        <a href="<?= base_url('kepsek') ?>" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-file-invoice"></i>
                             <p>
@@ -181,6 +205,12 @@
                     </li>
                 <?php endif; ?>
                 <?php if (session()->get('role') == "siswa") : ?>
+                    <li class="nav-item">
+                        <a href="<?= base_url('siswa') ?>" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="<?= base_url('siswa/biodata') ?>" class="nav-link">
                             <i class="nav-icon fas fa-database"></i>

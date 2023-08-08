@@ -53,6 +53,7 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
 
     // criterias
     $routes->get('criterias', 'AdminController::criterias');
+    $routes->post('criteria/add', 'AdminController::add_criteria');
 });
 // Siswa routes
 $routes->group("siswa", ["filter" => "auth"], function ($routes) {

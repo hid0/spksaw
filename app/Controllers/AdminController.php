@@ -227,4 +227,59 @@ class AdminController extends BaseController
     ];
     return view('admin/criterias', $data);
   }
+
+  public function add_criteria()
+  {
+    // add criteria
+    $validation = $this->validate(
+      [
+        'nm_kriteria' =>
+        [
+          'rules' => 'required',
+          'errors' =>
+          [
+            'required' => 'wajib masukkan nama kriteria!',
+          ]
+        ],
+        'tipe_kriteria' => [
+          'rules' => 'required',
+          'errors' =>
+          [
+            'required' => 'wajib masukkan tipe!',
+          ]
+        ],
+        'bobot_kriteria' => [
+          'rules' => 'required',
+          'errors' =>
+          [
+            'required' => 'wajib masukkan bobot!',
+          ]
+        ]
+      ]
+    );
+
+    $db = \Config\Database::connect();
+    $query = $db->table('tbl_kriteria');
+
+    // validation
+    if ($validation) {
+      // insert data
+      $data = [
+        'nm_kriteria' => $this->request->getPost('nm_kriteria'),
+        'tipe_kriteria' => $this->request->getPost('tipe_kriteria'),
+        'bobot_kriteria' => $this->request->getPost('bobot_kriteria'),
+      ];
+
+      $query->insert($data);
+      session()->setFlashdata('message', 'Kriteria berhasil ditambahkan');
+      // var_dump($this->request);
+      return redirect()->to(base_url('admin/criterias'));
+    } else {
+      $data = [
+        'criterias' => $query->get(),
+        'validation' => $this->validator,
+      ];
+      return view('admin/criterias', $data);
+    }
+  }
 }

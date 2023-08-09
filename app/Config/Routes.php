@@ -51,6 +51,7 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     // DUDI
     $routes->get('dudi', 'AdminController::dudi');
     $routes->post('dudi/add', 'AdminController::add_dudi');
+    $routes->get('dudi/:num', 'AdminController::detail_dudi');
 
     // criterias
     $routes->get('criterias', 'AdminController::criterias');
@@ -68,6 +69,8 @@ $routes->group("koordinator", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "KoordinatorController::index");
     // kelengkapan data
     $routes->get('dokumen', 'KoordinatorController::dokumen');
+    $routes->get('dokumen/:num', 'KoordinatorController::penilaian');
+    $routes->post('dokumen/nilai', 'KoordinatorController::save_nilai');
     // input nilai rapor
     $routes->get('rapor', 'KoordinatorController::rapor');
     // lihat rekap nilai

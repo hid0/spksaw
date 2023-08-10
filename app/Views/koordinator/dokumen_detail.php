@@ -39,8 +39,8 @@
                 <option value="70" <?= $dt->nilai == '70' ? 'selected' : ''; ?>>Kurang Lengkap</option>
                 <option value="30" <?= $dt->nilai == '30' ? 'selected' : ''; ?>>Tidak Lengkap</option>
               </select>
-              <input type="hidden" name="<?= $dt->id_siswa; ?>" name="id_siswa">
             </div>
+            <input type="hidden" value="<?= $dt->id_siswa; ?>" name="id_siswa">
           </div>
           <div class="form-group row">
             <button type="submit" class="btn btn-danger">Simpan Penilaian</button>

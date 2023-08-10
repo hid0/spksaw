@@ -69,7 +69,7 @@ $routes->group("koordinator", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "KoordinatorController::index");
     // kelengkapan data
     $routes->get('dokumen', 'KoordinatorController::dokumen');
-    $routes->get('dokumen/:num', 'KoordinatorController::penilaian');
+    $routes->get('dokumen/:num', 'KoordinatorController::penilaian/$1');
     $routes->post('dokumen/nilai', 'KoordinatorController::save_nilai');
     // input nilai rapor
     $routes->get('rapor', 'KoordinatorController::rapor');

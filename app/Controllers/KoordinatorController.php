@@ -40,10 +40,11 @@ class KoordinatorController extends BaseController
   public function save_nilai()
   {
     $db = \Config\Database::connect();
+    // $request = \Config\Services::request();
 
     $db->table('tbl_penilaian')->set('nilai', $this->request->getPost('nilai'))->where('id_siswa', $this->request->getPost('id_siswa'))->update();
     session()->setFlashdata('message', 'Nilai berhasil disimpan');
-    // var_dump($this->request);
+    // var_dump($this->request->getPost('id_siswa'));
     return redirect()->to(base_url('koordinator/dokumen'));
   }
 

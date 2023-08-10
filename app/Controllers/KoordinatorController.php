@@ -50,7 +50,12 @@ class KoordinatorController extends BaseController
 
   public function rapor()
   {
-    return view("koordinator/rapor");
+    $request = \Config\Services::request();
+    $db = \Config\Database::connect();
+    return view("koordinator/rapor", [
+      // 'student' => $db->table('tbl_siswa')->select()->join('tbl_penilaian', 'tbl_penilaian.id_siswa = tbl_siswa.id_siswa', 'inner')->where('tbl_siswa.id_siswa', $request->getUri()->getSegment(3))->get(),
+      'students' => $db->table('tbl_siswa')->select()->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'inner')->join('tbl_jurusan', 'tbl_jurusan.id_jurusan = tbl_kelas.id_jurusan')->get(),
+    ]);
   }
 
   public function rekapNilai()

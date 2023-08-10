@@ -25,7 +25,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <!-- <tr>
                             <td>1</td>
                             <td>2980</td>
                             <td>Fajar Dwi Guntoro</td>
@@ -35,7 +35,16 @@
                                     <input type="text" class="form-control my-colorpicker1 colorpicker-element" data-colorpicker-id="1" data-original-title="" title="">
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
+                        <?php $no = 1; ?>
+                        <?php foreach ($students->getResult() as $dt) : ?>
+                            <tr>
+                                <td><?= $no++; ?>.</td>
+                                <td><?= $dt->nis; ?></td>
+                                <td><?= $dt->name; ?></td>
+                                <td><?= $dt->alias_jurusan; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
                 <button type="submit" class="btn btn-primary">Submit</button>

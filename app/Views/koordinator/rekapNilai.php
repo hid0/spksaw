@@ -23,8 +23,8 @@
               <th class="text-center">Jurusan</th>
               <th class="text-center">N. Kelengkapan Data</th>
               <th class="text-center">N. Rapor</th>
-              <th class="text-center">N. Tes Tertulis</th>
               <th class="text-center">N. Tes Wawancara</th>
+              <th class="text-center">N. Tes Tertulis</th>
               <th class="text-center">Alpa</th>
             </tr>
           </thead>

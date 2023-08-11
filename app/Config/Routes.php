@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Controllers\HubinController;
 use App\Controllers\KoordinatorController;
 
 // Create a new instance of our RouteCollection class.
@@ -85,6 +86,8 @@ $routes->group("hubin", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "HubinController::index");
     // input nilai tes tertulis
     $routes->get('tesTulis', 'HubinController::tesTulis');
+    $routes->get('tes-tulis/:num', "HubinController::tulisNilai");
+    $routes->post('tes-tulis/save', 'HubinController::tulisNilaiSave');
     // input nilai tes tertulis
     $routes->get('tesWawancara', 'HubinController::tesWawancara');
     // lihat rekap nilai

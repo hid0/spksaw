@@ -40,7 +40,7 @@
                   <td><?= $st->email ?></td>
                   <td><?= $st->phone_no ?? '-' ?></td>
                   <td class="text-center">
-                    <a href="<?= base_url('admin/student/' . $st->id_siswa) ?>" class="btn-sm btn-success" title="Detail"><i class="fas fa-info-circle"></i> Detail</a>
+                    <a href="<?= base_url('admin/student/' . $st->id) ?>" class="btn-sm btn-success" title="Detail"><i class="fas fa-info-circle"></i> Detail</a>
                   </td>
                 </tr>
               <?php endforeach; ?>

@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Controllers\KoordinatorController;
+
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -54,8 +56,8 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->get('dudi/:num', 'AdminController::detail_dudi');
 
     // criterias
-    $routes->get('criterias', 'AdminController::criterias');
-    $routes->post('criteria/add', 'AdminController::add_criteria');
+    // $routes->get('criterias', 'AdminController::criterias');
+    // $routes->post('criteria/add', 'AdminController::add_criteria');
 });
 // Siswa routes
 $routes->group("siswa", ["filter" => "auth"], function ($routes) {
@@ -73,6 +75,8 @@ $routes->group("koordinator", ["filter" => "auth"], function ($routes) {
     $routes->post('dokumen/nilai', 'KoordinatorController::save_nilai');
     // input nilai rapor
     $routes->get('rapor', 'KoordinatorController::rapor');
+    $routes->get('rapor/:num', 'KoordinatorController::c1');
+    $routes->post('rapor/nilai', 'KoordinatorController::save_rapor');
     // lihat rekap nilai
     $routes->get('rekapNilai', 'KoordinatorController::rekapNilai');
 });

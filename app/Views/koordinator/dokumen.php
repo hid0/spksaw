@@ -14,18 +14,19 @@
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table">
+        <table class="table table-striped table-hover">
           <thead>
             <tr>
-              <th>No.</th>
+              <th class="text-center">No.</th>
               <th>NIS</th>
               <th>Nama Lengkap</th>
-              <th>T.Badan</th>
-              <th>B.Badan</th>
-              <th>Formulir</th>
-              <th>Rapor</th>
-              <th>Vaksin</th>
-              <th>Surat Kesehatan</th>
+              <th class="text-center">T.Badan</th>
+              <th class="text-center">B.Badan</th>
+              <th class="text-center">Formulir</th>
+              <th class="text-center">Rapor</th>
+              <th class="text-center">Kartu Pelajar</th>
+              <th class="text-center">Vaksin</th>
+              <th class="text-center">Surat Kesehatan</th>
               <th>Opsi</th>
             </tr>
           </thead>
@@ -33,17 +34,34 @@
             <?php $no = 1; ?>
             <?php foreach ($students->getResult() as $dt) : ?>
               <tr>
-                <td><?= $no++; ?>.</td>
+                <td class="text-center"><?= $no++; ?>.</td>
                 <td><?= $dt->nis; ?></td>
                 <td><?= $dt->name; ?></td>
                 <td class="text-center"><?= $dt->t_badan ?? '-'; ?></td>
                 <td class="text-center"><?= $dt->b_badan ?? '-'; ?></td>
-                <td><a href="<?= base_url() . $dt->formulir; ?>" target="_blank" rel="noopener noreferrer">formulir</a></td>
-                <td>rapor</td>
-                <td>vaksin</td>
-                <td>suket</td>
+                <td class="text-center"><?= $dt->formulir != NULL ? '&#9989;' : '❌'; ?></td>
+                <td class="text-center"><?= $dt->kartu_pelajar != NULL ? '&#9989;' : '❌'; ?></td>
+                <td class="text-center"><?= $dt->raport != NULL ? '&#9989;' : '❌'; ?></td>
+                <td class="text-center"><?= $dt->vaksin != NULL ? '&#9989;' : '❌'; ?></td>
+                <td class="text-center"><?= $dt->surat_kesehatan != NULL ? '&#9989;' : '❌'; ?></td>
                 <td>
-                  <a href="<?= base_url('koordinator/dokumen/' . $dt->id_siswa); ?>" class="btn btn-info btn-sm">Nilai Sekarang</a>
+                  <?php if ($dt->nilai_c2 == null || $dt->nilai_c2 == 0) : ?>
+                    <a href="<?= base_url('koordinator/dokumen/' . $dt->id); ?>" title="klik untuk merubah" class="btn btn-info btn-sm">
+                      Nilai Sekarang
+                    </a>
+                  <?php elseif ($dt->nilai_c2 == '100') : ?>
+                    <a href="<?= base_url('koordinator/dokumen/' . $dt->id); ?>" class="btn btn-success btn-sm" title="klik untuk merubah">
+                      Lengkap
+                    </a>
+                  <?php elseif ($dt->nilai_c2 == '70') : ?>
+                    <a href="<?= base_url('koordinator/dokumen/' . $dt->id); ?>" class="btn btn-warning btn-sm" title="klik untuk merubah">
+                      Kurang Lengkap
+                    </a>
+                  <?php elseif ($dt->nilai_c2 == '30') : ?>
+                    <a href="<?= base_url('koordinator/dokumen/' . $dt->id); ?>" class="btn btn-danger btn-sm" title="klik untuk merubah">
+                      Tidak Lengkap
+                    </a>
+                  <?php endif; ?>
                 </td>
               </tr>
             <?php endforeach; ?>

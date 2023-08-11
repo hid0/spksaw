@@ -5,6 +5,7 @@ namespace Config;
 use App\Controllers\GurubkController;
 use App\Controllers\HubinController;
 use App\Controllers\KoordinatorController;
+use App\Controllers\SiswaController;
 
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
@@ -67,6 +68,7 @@ $routes->group("siswa", ["filter" => "auth"], function ($routes) {
 
     // biodata
     $routes->get('biodata', 'SiswaController::biodata');
+    $routes->post('biodata/upload', 'SiswaController::saveBio');
 });
 // Koordinator routes
 $routes->group("koordinator", ["filter" => "auth"], function ($routes) {

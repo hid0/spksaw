@@ -2,6 +2,9 @@
 
 namespace Config;
 
+use App\Controllers\HubinController;
+use App\Controllers\KoordinatorController;
+
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -54,8 +57,8 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->get('dudi/:num', 'AdminController::detail_dudi');
 
     // criterias
-    $routes->get('criterias', 'AdminController::criterias');
-    $routes->post('criteria/add', 'AdminController::add_criteria');
+    // $routes->get('criterias', 'AdminController::criterias');
+    // $routes->post('criteria/add', 'AdminController::add_criteria');
 });
 // Siswa routes
 $routes->group("siswa", ["filter" => "auth"], function ($routes) {
@@ -73,6 +76,8 @@ $routes->group("koordinator", ["filter" => "auth"], function ($routes) {
     $routes->post('dokumen/nilai', 'KoordinatorController::save_nilai');
     // input nilai rapor
     $routes->get('rapor', 'KoordinatorController::rapor');
+    $routes->get('rapor/:num', 'KoordinatorController::c1');
+    $routes->post('rapor/nilai', 'KoordinatorController::save_rapor');
     // lihat rekap nilai
     $routes->get('rekapNilai', 'KoordinatorController::rekapNilai');
 });
@@ -81,6 +86,8 @@ $routes->group("hubin", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "HubinController::index");
     // input nilai tes tertulis
     $routes->get('tesTulis', 'HubinController::tesTulis');
+    $routes->get('tes-tulis/:num', "HubinController::tulisNilai");
+    $routes->post('tes-tulis/save', 'HubinController::tulisNilaiSave');
     // input nilai tes tertulis
     $routes->get('tesWawancara', 'HubinController::tesWawancara');
     // lihat rekap nilai

@@ -44,12 +44,12 @@
                             <p>Data DU/DI</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="<?= base_url('admin/criterias') ?>" class="nav-link">
                             <i class="nav-icon fas fa-server"></i>
                             <p>Data Kriteria</p>
                         </a>
-                    </li>
+                    </li> -->
                 <?php endif; ?>
                 <?php if (session()->get('role') == "koordinator") : ?>
                     <li class="nav-item">

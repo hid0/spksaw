@@ -84,7 +84,7 @@ class AdminController extends BaseController
       // model init
       $user = new UserModel();
 
-      $data = $user->insert([
+      $user->insert([
         'name' => $this->request->getPost('name'),
         'email' => $this->request->getPost('email'),
         'phone_no' => $this->request->getPost('phone_no'),

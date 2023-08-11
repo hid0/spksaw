@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Controllers\GurubkController;
 use App\Controllers\HubinController;
 use App\Controllers\KoordinatorController;
 
@@ -90,6 +91,8 @@ $routes->group("hubin", ["filter" => "auth"], function ($routes) {
     $routes->post('tes-tulis/save', 'HubinController::tulisNilaiSave');
     // input nilai tes tertulis
     $routes->get('tesWawancara', 'HubinController::tesWawancara');
+    $routes->get('tes-wawancara/:num', 'HubinController::wawancaraNilai');
+    $routes->post('tes-wawancara/save', 'HubinController::wawancaraSave');
     // lihat rekap nilai
     $routes->get('rekapNilai', 'HubinController::rekapNilai');
     // hitung SAW
@@ -106,6 +109,8 @@ $routes->group("gurubk", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "GurubkController::index");
     // input jumlah alpa
     $routes->get('presensi', 'GurubkController::presensi');
+    $routes->get('presensi/:num', 'GurubkController::presensiJml');
+    $routes->post('presensi/save', 'GurubkController::presensiSave');
     // lihat rekap nilai
     $routes->get('rekapNilai', 'GurubkController::rekapNilai');
 });

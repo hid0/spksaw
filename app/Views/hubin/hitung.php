@@ -68,15 +68,15 @@
         </button>
       </div>
     </div>
-    <div class="card-body">
+    <form action="<?= base_url('hubin/normalisasi/referensi'); ?>" method="POST" class="card-body">
       <div class="table-responsive">
         <table class="table">
           <thead>
             <tr>
-              <th>No.</th>
-              <th>NIS</th>
+              <th width="25">No.</th>
+              <th width="30">NIS</th>
               <th>Nama Lengkap</th>
-              <th>Jurusan</th>
+              <th class="text-center">Jurusan</th>
               <th>N. Kelengkapan Data</th>
               <th>N. Rapor</th>
               <th>N. Tes Tertulis</th>
@@ -113,7 +113,7 @@
           <a href="<?= base_url('hubin/normalisasi/reset'); ?>" class="btn btn-warning" onclick="return confirm('Yakin reset tabel normalisasi?');">RESET DATA</a>
         </div>
       </div>
-    </div>
+    </form>
   </div>
   <div class="card">
     <div class="card-header">
@@ -129,10 +129,10 @@
         <table class="table">
           <thead>
             <tr>
-              <th>No.</th>
-              <th>NIS</th>
+              <th width="25">No.</th>
+              <th width="30">NIS</th>
               <th>Nama Lengkap</th>
-              <th>Jurusan</th>
+              <th class="text-center">Jurusan</th>
               <th>Nilai Preferensi</th>
             </tr>
           </thead>
@@ -146,7 +146,10 @@
               <?php foreach ($referensi->getResult() as $dt) : ?>
                 <tr>
                   <td><?= $no++; ?>.</td>
-
+                  <td class="text-center"><?= $dt->nis; ?></td>
+                  <td class="text-center"><?= $dt->name; ?></td>
+                  <td class="text-center"><?= $dt->alias_jurusan; ?></td>
+                  <td class="text-center"><?= $dt->nilai_referensi; ?></td>
                 </tr>
               <?php endforeach; ?>
             <?php endif; ?>

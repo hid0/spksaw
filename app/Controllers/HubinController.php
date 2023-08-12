@@ -80,8 +80,10 @@ class HubinController extends BaseController
   {
     return view("hubin/hitung", [
       'rekapitulasi' => Database::connect()->table('tbl_siswa')->select()->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'inner')->join('tbl_jurusan', 'tbl_jurusan.id_jurusan = tbl_kelas.id_jurusan')->join('c1', 'c1.id_siswa = tbl_siswa.id', 'left')->join('c2', 'c2.id_siswa = tbl_siswa.id', 'left')->join('c3', 'c3.id_siswa = tbl_siswa.id', 'left')->join('c4', 'c4.id_siswa = tbl_siswa.id', 'left')->join('c5', 'c5.id_siswa = tbl_siswa.id', 'left')->get(),
+      // =================================================
       'normalisasi' => Database::connect()->table('tbl_siswa')->select()->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'inner')->join('tbl_jurusan', 'tbl_jurusan.id_jurusan = tbl_kelas.id_jurusan')->join('tbl_normalisasi', 'tbl_normalisasi.id_siswa = tbl_siswa.id', 'inner')->get(),
-      // 'referensi' => Database::connect()->table('tbl_referensi')->select()->join('tbl_normalisasi')->get(),
+      // =================================================
+      'referensi' => Database::connect()->table('tbl_referensi')->select()->join('tbl_siswa', 'tbl_referensi.id_siswa = tbl_siswa.id')->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas')->join('tbl_jurusan', 'tbl_jurusan.id_jurusan = tbl_kelas.id_jurusan')->get(),
     ]);
   }
 
@@ -92,6 +94,30 @@ class HubinController extends BaseController
     Database::connect()->table('tbl_referensi')->truncate();
     session()->setFlashdata('message', 'Data Berhasil direset!');
     return redirect()->to(base_url('hubin/hitung'));
+  }
+
+  public function referensi()
+  {
+    // count reference
+    $valNormalisasi = Database::connect()->table('tbl_normalisasi')->get()->getNumRows();
+    $normalisasi = Database::connect()->table('tbl_normalisasi')->select()->get()->getResultArray();
+    if ($valNormalisasi < 1) {
+      // count
+      echo "alert('Data Normalisasi Belum Digenerate!!!')";
+      return redirect()->to(base_url('hubin/hitung'));
+    } else {
+      // generate new data
+      for ($i = 0; $i < $valNormalisasi; $i++) {
+        $data[] = [
+          'id_siswa' => $normalisasi[$i]['id_siswa'],
+          'nilai_referensi' => ($normalisasi[$i]['c1'] * 0.2) + ($normalisasi[$i]['c2'] * 0.15) + ($normalisasi[$i]['c3'] * 0.3) + ($normalisasi[$i]['c4'] * 0.15) + ($normalisasi[$i]['c5'] * 0.2),
+        ];
+      }
+      Database::connect()->table('tbl_referensi')->insertBatch($data);
+      session()->setFlashdata('message', 'Data Berhasil direferensikan!');
+      return redirect()->to(base_url('hubin/hitung'));
+      // dd($data);
+    }
   }
 
   public function normalisasi()

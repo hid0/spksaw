@@ -2,8 +2,10 @@
 
 namespace Config;
 
+use App\Controllers\GurubkController;
 use App\Controllers\HubinController;
 use App\Controllers\KoordinatorController;
+use App\Controllers\SiswaController;
 
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
@@ -66,6 +68,7 @@ $routes->group("siswa", ["filter" => "auth"], function ($routes) {
 
     // biodata
     $routes->get('biodata', 'SiswaController::biodata');
+    $routes->post('biodata/upload', 'SiswaController::saveBio');
 });
 // Koordinator routes
 $routes->group("koordinator", ["filter" => "auth"], function ($routes) {
@@ -90,10 +93,15 @@ $routes->group("hubin", ["filter" => "auth"], function ($routes) {
     $routes->post('tes-tulis/save', 'HubinController::tulisNilaiSave');
     // input nilai tes tertulis
     $routes->get('tesWawancara', 'HubinController::tesWawancara');
+    $routes->get('tes-wawancara/:num', 'HubinController::wawancaraNilai');
+    $routes->post('tes-wawancara/save', 'HubinController::wawancaraSave');
     // lihat rekap nilai
     $routes->get('rekapNilai', 'HubinController::rekapNilai');
     // hitung SAW
     $routes->get('hitung', 'HubinController::hitung');
+    $routes->post('normalisasi', 'HubinController::normalisasi');
+    $routes->get('normalisasi/reset', 'HubinController::reset');
+    $routes->post('normalisasi/referensi', 'HubinController::referensi');
     // Lihat Hasil
     $routes->get('lihatHasil', 'HubinController::lihatHasil');
     // detail Hasil
@@ -106,6 +114,8 @@ $routes->group("gurubk", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "GurubkController::index");
     // input jumlah alpa
     $routes->get('presensi', 'GurubkController::presensi');
+    $routes->get('presensi/:num', 'GurubkController::presensiJml');
+    $routes->post('presensi/save', 'GurubkController::presensiSave');
     // lihat rekap nilai
     $routes->get('rekapNilai', 'GurubkController::rekapNilai');
 });

@@ -99,6 +99,8 @@ $routes->group("hubin", ["filter" => "auth"], function ($routes) {
     $routes->get('rekapNilai', 'HubinController::rekapNilai');
     // hitung SAW
     $routes->get('hitung', 'HubinController::hitung');
+    $routes->post('normalisasi', 'HubinController::normalisasi');
+    $routes->get('normalisasi/reset', 'HubinController::reset');
     // Lihat Hasil
     $routes->get('lihatHasil', 'HubinController::lihatHasil');
     // detail Hasil

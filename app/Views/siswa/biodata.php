@@ -60,7 +60,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                         </div>
-                        <input type="date" class="form-control" name="tgl_lahir">
+                        <input type="date" class="form-control" name="tgl_lahir" value="<?= $dt->tgl_lahir; ?>">
                       </div>
                     </div>
                     <div class="form-group">
@@ -69,7 +69,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-phone"></i></span>
                         </div>
-                        <input type="number" min="0" class="form-control" placeholder="6289xxxxxxxxxx" name="phone_no">
+                        <input type="number" min="0" class="form-control" placeholder="6289xxxxxxxxxx" name="phone_no" value="<?= $dt->phone_no; ?>">
                       </div>
                     </div>
                   </div>

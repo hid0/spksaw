@@ -133,7 +133,7 @@
               <th width="30">NIS</th>
               <th>Nama Lengkap</th>
               <th class="text-center">Jurusan</th>
-              <th>Nilai Preferensi</th>
+              <th class="text-center">Nilai Preferensi</th>
             </tr>
           </thead>
           <tbody>
@@ -146,8 +146,8 @@
               <?php foreach ($referensi->getResult() as $dt) : ?>
                 <tr>
                   <td><?= $no++; ?>.</td>
-                  <td class="text-center"><?= $dt->nis; ?></td>
-                  <td class="text-center"><?= $dt->name; ?></td>
+                  <td><?= $dt->nis; ?></td>
+                  <td><?= $dt->name; ?></td>
                   <td class="text-center"><?= $dt->alias_jurusan; ?></td>
                   <td class="text-center"><?= $dt->nilai_referensi; ?></td>
                 </tr>

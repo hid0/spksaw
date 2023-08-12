@@ -31,7 +31,7 @@ class SiswaController extends BaseController
   {
     // save biodata
     $this->upPDF();
-    Database::connect()->table('tbl_siswa')->set('t_badan', $this->request->getPost('t_badan'))->set('b_badan', $this->request->getPost('b_badan'))->where('id_siswa', $this->request->getPost('id_siswa'))->update();
+    Database::connect()->table('tbl_siswa')->set('tgl_lahir', $this->request->getPost('tgl_lahir'))->set('phone_no', $this->request->getPost('phone_no'))->set('t_badan', $this->request->getPost('t_badan'))->set('b_badan', $this->request->getPost('b_badan'))->where('id', $this->request->getPost('id_siswa'))->update();
     session()->setFlashdata('message', 'Biodata berhasil disimpan');
     // var_dump($this->request->getPost('id_siswa'));
     return redirect()->to(base_url('siswa/biodata'));
@@ -42,15 +42,7 @@ class SiswaController extends BaseController
     // upload pdf file
     $validation = $this->validate(
       [
-        'formulir' =>
-        [
-          'rules' => 'uploaded|mime_in[application/pdf]|max_size[5000]',
-          'errors' =>
-          [
-            'mime_in' => 'wajib tipe file pdf!',
-            'max_size' => 'maksimal 5mb!'
-          ]
-        ],
+        'formulir' => 'uploaded[formulir]|mime_in[application/pdf]|max_size[4096]|ext_in[formulir,pdf]'
       ]
     );
 
@@ -59,7 +51,7 @@ class SiswaController extends BaseController
 
       $newName = $file->getRandomName();
       $file->move(WRITEPATH . 'uploads', $newName);
-
+      // dd($newName);
       Database::connect()->table('tbl_siswa')->set('formulir', $newName)->where('id', $this->request->getPost('id_siswa'))->update();
       session()->setFlashdata('message', 'File berhasil disimpan & diupload');
     }

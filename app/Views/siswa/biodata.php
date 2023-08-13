@@ -102,49 +102,24 @@
                   </div>
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="exampleInputFile">Formulir Pendaftaran</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" name="formulir" class="custom-file-input" id="exampleInputFile">
-                          <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
-                        </div>
-                      </div>
+                      <label for="formulir">Formulir Pendaftaran</label>
+                      <input type="file" name="formulir" class="form-control-file" id="formulir">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputFile">Kartu Pelajar</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" name="kartu_pelajar" class="custom-file-input" id="exampleInputFile">
-                          <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
-                        </div>
-                      </div>
+                      <label for="kartu_pelajar">Kartu Pelajar</label>
+                      <input type="file" name="kartu_pelajar" class="form-control-file" id="kartu_pelajar">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputFile">Rapor Semester 1 s/d 3</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" name="raport" class="custom-file-input" id="exampleInputFile">
-                          <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
-                        </div>
-                      </div>
+                      <label for="rapor">Rapor Semester 1 s/d 3</label>
+                      <input type="file" name="raport" class="form-control-file" id="rapor">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputFile">Kartu Vaksin</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" name="vaksin" class="custom-file-input" id="exampleInputFile">
-                          <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
-                        </div>
-                      </div>
+                      <label for="vaksin">Kartu Vaksin</label>
+                      <input type="file" name="vaksin" class="form-control-file" id="vaksin">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputFile">Surat Kesehatan</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" name="surat_kesehatan" class="custom-file-input" id="exampleInputFile">
-                          <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
-                        </div>
-                      </div>
+                      <label for="sukes">Surat Kesehatan</label>
+                      <input type="file" name="surat_kesehatan" class="form-control-file" id="sukes">
                     </div>
                     <input type="hidden" name="id_siswa" value="<?= $dt->id; ?>">
                     <button type="submit" class="btn btn-primary btn-block btn-lg">Simpan</button>

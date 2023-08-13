@@ -29,20 +29,18 @@ class SiswaController extends BaseController
 
   public function saveBio()
   {
-    // save biodata
-    $this->upPDF();
-    Database::connect()->table('tbl_siswa')->set('tgl_lahir', $this->request->getPost('tgl_lahir'))->set('phone_no', $this->request->getPost('phone_no'))->set('t_badan', $this->request->getPost('t_badan'))->set('b_badan', $this->request->getPost('b_badan'))->where('id', $this->request->getPost('id_siswa'))->update();
-    session()->setFlashdata('message', 'Biodata berhasil disimpan');
-    // var_dump($this->request->getPost('id_siswa'));
-    return redirect()->to(base_url('siswa/biodata'));
-  }
-
-  private function upPDF()
-  {
+    // dd($this->request->getFile('formulir'));
     // upload pdf file
     $validation = $this->validate(
       [
-        'formulir' => 'uploaded[formulir]|mime_in[application/pdf]|max_size[4096]|ext_in[formulir,pdf]'
+        'formulir' => [
+          'rules' => 'max_size[formulir,4096]', 'mime_in[formulir,application/pdf]', 'ext_in[formulir,pdf]',
+          'errors' => [
+            'max_size' => 'maksimal 4MB',
+            'mime_in' => 'harus file pdf',
+            'ext_in' => 'harus file pdf',
+          ]
+        ]
       ]
     );
 
@@ -50,11 +48,16 @@ class SiswaController extends BaseController
       $file = $this->request->getFile('formulir');
 
       $newName = $file->getRandomName();
-      $file->move(WRITEPATH . 'uploads', $newName);
+      $file->move('uploads', $newName);
       // dd($newName);
       Database::connect()->table('tbl_siswa')->set('formulir', $newName)->where('id', $this->request->getPost('id_siswa'))->update();
       session()->setFlashdata('message', 'File berhasil disimpan & diupload');
     }
+
+    Database::connect()->table('tbl_siswa')->set('tgl_lahir', $this->request->getPost('tgl_lahir'))->set('phone_no', $this->request->getPost('phone_no'))->set('t_badan', $this->request->getPost('t_badan'))->set('b_badan', $this->request->getPost('b_badan'))->where('id', $this->request->getPost('id_siswa'))->update();
+    session()->setFlashdata('message', 'Biodata berhasil disimpan');
+    // var_dump($this->request->getPost('id_siswa'));
+    return redirect()->to(base_url('siswa/biodata'));
   }
 
   public function rekomendasi()

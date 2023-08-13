@@ -19,7 +19,7 @@
             <span class="info-box-icon bg-info elevation-1"><i class="fas fa-user-secret"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">User</span>
-                <span class="info-box-number">10</span>
+                <span class="info-box-number"><?= count_user(); ?></span>
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
         <div class="info-box mb-3"> <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-user-tie"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Siswa</span>
-                <span class="info-box-number">500</span>
+                <span class="info-box-number"><?= count_student(); ?></span>
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@
         <div class="info-box mb-3"> <span class="info-box-icon bg-success elevation-1"><i class="fas fa-school"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">DU/DI</span>
-                <span class="info-box-number">56</span>
+                <span class="info-box-number"><?= count_dudi(); ?></span>
             </div>
         </div>
     </div>

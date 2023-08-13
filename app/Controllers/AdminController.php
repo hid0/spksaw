@@ -16,6 +16,7 @@ class AdminController extends BaseController
       echo 'Access denied';
       exit;
     }
+    helper(['my_helper']);
   }
   public function index()
   {

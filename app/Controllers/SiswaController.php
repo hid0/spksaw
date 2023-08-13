@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use \Config\Database;
-// use \Config\Services;
+use \Config\Services;
 
 class SiswaController extends BaseController
 {
@@ -55,5 +55,22 @@ class SiswaController extends BaseController
       Database::connect()->table('tbl_siswa')->set('formulir', $newName)->where('id', $this->request->getPost('id_siswa'))->update();
       session()->setFlashdata('message', 'File berhasil disimpan & diupload');
     }
+  }
+
+  public function rekomendasi()
+  {
+    // recommendation
+    return view('siswa/rekomendasi', [
+      'dudi' => Database::connect()->table('tbl_dudi')->select()->join('tbl_jurusan', 'tbl_jurusan.id_jurusan = tbl_dudi.id_jurusan')->get(),
+    ]);
+  }
+
+  public function dudi()
+  {
+    // detail
+    return view('siswa/dudi', [
+      'students' => Database::connect()->table('tbl_referensi')->select()->distinct('false')->join('tbl_siswa', 'tbl_referensi.id_siswa = tbl_siswa.id', 'inner')->join('tbl_kelas', 'tbl_siswa.id_kelas = tbl_kelas.id_kelas', 'inner')->join('tbl_jurusan', 'tbl_kelas.id_jurusan = tbl_jurusan.id_jurusan', 'inner')->where('tbl_kelas.id_jurusan', Services::request()->getUri()->getSegment(3))->orderBy('tbl_referensi.nilai_referensi', 'DESC')->get(),
+      'dudi' => Database::connect()->table('tbl_dudi')->select('id_dudi,nm_dudi')->where('id_dudi', Services::request()->getUri()->getSegment(4))->get()->getFirstRow(),
+    ]);
   }
 }

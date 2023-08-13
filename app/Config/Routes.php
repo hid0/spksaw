@@ -66,6 +66,9 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
 $routes->group("siswa", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "SiswaController::index");
 
+    // recommendation
+    $routes->get('daftar-rekomendasi', 'SiswaController::rekomendasi');
+    $routes->get('dudi/:num/:num', 'SiswaController::dudi');
     // biodata
     $routes->get('biodata', 'SiswaController::biodata');
     $routes->post('biodata/upload', 'SiswaController::saveBio');

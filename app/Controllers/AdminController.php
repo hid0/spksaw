@@ -4,7 +4,9 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\UserModel;
-use CodeIgniter\Database\RawSql;
+use CodeIgniter\I18n\Time;
+use Config\Database;
+use Config\Services;
 
 class AdminController extends BaseController
 {
@@ -89,20 +91,8 @@ class AdminController extends BaseController
         'email' => $this->request->getPost('email'),
         'phone_no' => $this->request->getPost('phone_no'),
         'role' => $this->request->getPost('role'),
-        'password' => password_hash($this->request->getPost("password"), PASSWORD_BCRYPT),
+        'password' => password_hash($this->request->getPost("password"), PASSWORD_DEFAULT),
       ]);
-
-      // while create student user
-      // if ($this->request->getPost('role') === 'siswa') {
-      //   $studentData = [
-      //     'id_user' => $data['id'],
-      //     // 'nis'
-      //   ];
-      //   $db = \Config\Database::connect();
-      //   $query = $db->table('tbl_siswa');
-      // }
-
-
       // flash message
       session()->setFlashdata('message', 'Pengguna berhasil ditambahkan');
       // var_dump($this->request);
@@ -128,38 +118,38 @@ class AdminController extends BaseController
     helper(['form', 'url']);
   }
 
-  public function del_user($id)
+  public function del_user()
   {
-    $users = new UserModel();
-
-    $user = $users->find($id);
-    if ($user) {
-      $users->delete($id);
-
-      session()->setFlashdata('message', 'Pengguna berhasil dihapus!');
-      return redirect()->to(base_url('admin/users'));
+    $role = Database::connect()->table('users')->select('role')->where('id', $this->request->getPost('user_id'))->get()->getFirstRow();
+    // dd($role);
+    if ($role->role == 'siswa') {
+      // if role is student
+      // $file = Database::connect()->table('users')->select('formulir,kartu_pelajar,raport,vaksin,surat_kesehatan')->where('id', $this->request->getPost('user_id'))->get()->getFirstRow();
+      // if ($file->formulir != NULL) {
+      //   unlink($file->formulir);
+      // }
+      Database::connect()->table('tbl_siswa')->where('id_user', $this->request->getPost('user_id'))->delete();
+      Database::connect()->table('users')->where('id', $this->request->getPost('user_id'))->delete();
+      session()->setFlashdata('message', 'Siswa & User berhasil dihapus!');
     } else {
-      // return view('admin/users', ['validation' => $this->validator, 'users' => $users->findAll()]);
+      Database::connect()->table('users')->where('id', $this->request->getPost('user_id'))->delete();
+      session()->setFlashdata('message', 'User berhasil dihapus!');
     }
+    return redirect()->to(base_url('admin/users'));
   }
 
   public function students()
   {
     // student data
-    $db = \Config\Database::connect();
-    $query = $db->table('tbl_siswa');
-    $query->select('*');
-    $query->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas');
-    $data = [
-      'students' => $query->get(),
-      'class' => $db->table('tbl_kelas')->select()->get(),
-    ];
-    return view('admin/students', $data);
+    return view('admin/students', [
+      'students' => Database::connect()->table('tbl_siswa')->select()->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas')->get(),
+      'class' => Database::connect()->table('tbl_kelas')->select()->get(),
+    ]);
   }
 
   public function add_student()
   {
-    helper(['my_helper', 'date']);
+    helper(['my_helper']);
 
     $validation = $this->validate(
       [
@@ -220,21 +210,20 @@ class AdminController extends BaseController
     if ($validation) {
       // insert users data
       $data1 = [
-        'id' => new RawSql('DEFAULT'),
         'name' => ucwords(htmlspecialchars($this->request->getPost('name'))),
         'email' => $this->request->getPost('email'),
         'phone_no' => $this->request->getPost('phone_no'),
         'role' => 'siswa',
         'password' => password_hash(genPasswd($this->request->getPost('tgl_lahir')), PASSWORD_BCRYPT),
         // 'password' => $this->request->getPost('tgl_lahir'),
-        'created_at' => now()
+        'created_at' => new Time('now'),
       ];
       $query1->insert($data1);
-      // dd($data1);
+      // dd(Database::connect()->insertID());
 
       // insert student data
       $data2 = [
-        'id_user' => $data1['id'],
+        'id_user' => $db->insertID(),
         'nis' => $this->request->getPost('nis'),
         'name' => ucwords(htmlspecialchars($this->request->getPost('name'))),
         'tgl_lahir' => $this->request->getPost('tgl_lahir'),
@@ -250,7 +239,7 @@ class AdminController extends BaseController
       return redirect()->to(base_url('admin/students'));
     } else {
       $data = [
-        'class' => $db->table('tbl_kelas')->select()->get(),
+        'class' => Database::connect()->table('tbl_kelas')->select()->get(),
         'students' => $query2->select()->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas')->get(),
         'validation' => $this->validator,
       ];
@@ -324,10 +313,8 @@ class AdminController extends BaseController
   public function detail_dudi()
   {
     // detail show all
-    $db = \Config\Database::connect();
-    $request = \Config\Services::request();
     return view('admin/dudi_detail', [
-      'students' => $db->table('tbl_siswa')->select()->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'inner')->join('tbl_jurusan', 'tbl_kelas.id_jurusan = tbl_jurusan.id_jurusan', 'inner')->where('tbl_jurusan.id_jurusan', $request->getUri()->getSegment(3))->get(),
+      'students' => Database::connect()->table('tbl_siswa')->select()->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'inner')->join('tbl_jurusan', 'tbl_kelas.id_jurusan = tbl_jurusan.id_jurusan', 'inner')->where('tbl_jurusan.id_jurusan', Services::request()->getUri()->getSegment(3))->get(),
     ]);
   }
 

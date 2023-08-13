@@ -45,9 +45,9 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     // data users 
     $routes->get("/", "AdminController::index");
     $routes->get("users", "AdminController::users"); //admin/users
-    $routes->get("user/:num", 'AdminController::edit_user/$1'); //admin/user/{id}
     $routes->post('user', 'AdminController::user_add'); //with method post
-    $routes->get('del_user/:num', 'AdminController::del_user/$1');
+    $routes->post('user/delete', 'AdminController::del_user');
+    $routes->get("user/:num", 'AdminController::edit_user/$1'); //admin/user/{id}
 
     // students
     $routes->get('students', 'AdminController::students');

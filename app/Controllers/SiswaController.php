@@ -23,7 +23,7 @@ class SiswaController extends BaseController
   public function biodata()
   {
     return view("siswa/biodata", [
-      'user' => Database::connect()->table('users')->where('users.id', session()->id)->join('tbl_siswa', 'tbl_siswa.id_user = users.id')->get()
+      'user' => Database::connect()->table('users')->where('users.id', session()->id)->join('tbl_siswa', 'tbl_siswa.id_user = users.id', 'left')->get()
     ]);
   }
 

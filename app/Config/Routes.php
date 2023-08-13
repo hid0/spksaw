@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Controllers\AdminController;
 use App\Controllers\GurubkController;
 use App\Controllers\HubinController;
 use App\Controllers\KoordinatorController;
@@ -45,9 +46,10 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     // data users 
     $routes->get("/", "AdminController::index");
     $routes->get("users", "AdminController::users"); //admin/users
-    $routes->get("user/:num", 'AdminController::edit_user/$1'); //admin/user/{id}
     $routes->post('user', 'AdminController::user_add'); //with method post
-    $routes->get('del_user/:num', 'AdminController::del_user/$1');
+    $routes->post('user/delete', 'AdminController::del_user');
+    $routes->get("user/:num", 'AdminController::edit_user/$1'); //admin/user/{id}
+    $routes->post('edit-user', 'AdminController::update_user');
 
     // students
     $routes->get('students', 'AdminController::students');
@@ -66,6 +68,9 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
 $routes->group("siswa", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "SiswaController::index");
 
+    // recommendation
+    $routes->get('daftar-rekomendasi', 'SiswaController::rekomendasi');
+    $routes->get('dudi/:num/:num', 'SiswaController::dudi');
     // biodata
     $routes->get('biodata', 'SiswaController::biodata');
     $routes->post('biodata/upload', 'SiswaController::saveBio');
@@ -105,9 +110,10 @@ $routes->group("hubin", ["filter" => "auth"], function ($routes) {
     // Lihat Hasil
     $routes->get('lihatHasil', 'HubinController::lihatHasil');
     // detail Hasil
-    $routes->get('detailHasil', 'HubinController::detailHasil');
+    $routes->get('dudi/:num/:num', 'HubinController::dudi');
+    // $routes->get('detailHasil', 'HubinController::detailHasil');
     // cetak laporan
-    $routes->get('cetak', 'HubinController::cetak');
+    $routes->get('cetak/:num/:num', 'HubinController::cetak');
 });
 // Gurubk routes
 $routes->group("gurubk", ["filter" => "auth"], function ($routes) {

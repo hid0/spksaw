@@ -39,7 +39,13 @@
                 <td><?= $dt->name; ?></td>
                 <td class="text-center"><?= $dt->t_badan ?? '-'; ?></td>
                 <td class="text-center"><?= $dt->b_badan ?? '-'; ?></td>
-                <td class="text-center"><?= $dt->formulir != NULL ? '&#9989;' : '❌'; ?></td>
+                <td class="text-center">
+                  <?php if ($dt->formulir != NULL) : ?>
+                    <a href="<?= base_url('uploads/' . $dt->formulir); ?>" target="_blank" rel="noopener noreferrer">&#9989;</a>
+                  <?php else : ?>
+                    ❌
+                  <?php endif ?>
+                </td>
                 <td class="text-center"><?= $dt->kartu_pelajar != NULL ? '&#9989;' : '❌'; ?></td>
                 <td class="text-center"><?= $dt->raport != NULL ? '&#9989;' : '❌'; ?></td>
                 <td class="text-center"><?= $dt->vaksin != NULL ? '&#9989;' : '❌'; ?></td>

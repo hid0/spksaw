@@ -217,6 +217,12 @@
               <p>Biodata</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?= base_url('siswa/daftar-rekomendasi') ?>" class="nav-link">
+              <i class="nav-icon fas fa-server"></i>
+              <p>Rekomendasi</p>
+            </a>
+          </li>
         <?php endif; ?>
         <li class="nav-item">
           <a href="<?= site_url('logout') ?>" class="nav-link" onclick="return confirm('Ingin Logout?');">

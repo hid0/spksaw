@@ -47,12 +47,11 @@
             <?php endif; ?>
           </tbody>
         </table>
-        <a class="btn btn-info" href="<?= base_url('hubin/cetak/' . $dt->id_jurusan . '/' . $dudi->id_dudi) ?>" target="_blank"><i class="fas fa-print"></i> Laporan</a>
       </div>
     </div>
 
     <div class="card-footer">
-      <a href="<?= base_url('hubin/lihatHasil'); ?>" class="btn btn-default"><i class="fas fa-chevron-left"></i> Kembali</a>
+      <a href="<?= base_url('siswa/daftar-rekomendasi'); ?>" class="btn btn-default"><i class="fas fa-chevron-left"></i> Kembali</a>
     </div>
   </div>
 </section>

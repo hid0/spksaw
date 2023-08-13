@@ -163,16 +163,25 @@ class HubinController extends BaseController
 
   public function lihatHasil()
   {
-    return view("hubin/lihatHasil");
+    return view("hubin/lihatHasil", [
+      'dudi' => Database::connect()->table('tbl_dudi')->select()->join('tbl_jurusan', 'tbl_jurusan.id_jurusan = tbl_dudi.id_jurusan')->get(),
+    ]);
   }
 
-  public function detailHasil()
+  public function dudi()
   {
-    return view("hubin/detailHasil");
+    // detail
+    return view('hubin/detailHasil', [
+      'students' => Database::connect()->table('tbl_referensi')->select()->distinct('false')->join('tbl_siswa', 'tbl_referensi.id_siswa = tbl_siswa.id', 'inner')->join('tbl_kelas', 'tbl_siswa.id_kelas = tbl_kelas.id_kelas', 'inner')->join('tbl_jurusan', 'tbl_kelas.id_jurusan = tbl_jurusan.id_jurusan', 'inner')->where('tbl_kelas.id_jurusan', Services::request()->getUri()->getSegment(3))->orderBy('tbl_referensi.nilai_referensi', 'DESC')->get(),
+      'dudi' => Database::connect()->table('tbl_dudi')->select('id_dudi,nm_dudi')->where('id_dudi', Services::request()->getUri()->getSegment(4))->get()->getFirstRow(),
+    ]);
   }
 
   public function cetak()
   {
-    return view("hubin/cetak");
+    return view("hubin/cetak", [
+      'students' => Database::connect()->table('tbl_referensi')->select()->distinct('false')->join('tbl_siswa', 'tbl_referensi.id_siswa = tbl_siswa.id', 'inner')->join('tbl_kelas', 'tbl_siswa.id_kelas = tbl_kelas.id_kelas', 'inner')->join('tbl_jurusan', 'tbl_kelas.id_jurusan = tbl_jurusan.id_jurusan', 'inner')->where('tbl_kelas.id_jurusan', Services::request()->getUri()->getSegment(3))->orderBy('tbl_referensi.nilai_referensi', 'DESC')->get(),
+      'dudi' => Database::connect()->table('tbl_dudi')->select('id_dudi,nm_dudi')->where('id_dudi', Services::request()->getUri()->getSegment(4))->get()->getFirstRow(),
+    ]);
   }
 }

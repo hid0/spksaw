@@ -70,7 +70,7 @@
     </div>
     <form action="<?= base_url('hubin/normalisasi/referensi'); ?>" method="POST" class="card-body">
       <div class="table-responsive">
-        <table class="table">
+        <table class="table table-striped table-hover">
           <thead>
             <tr>
               <th width="25">No.</th>

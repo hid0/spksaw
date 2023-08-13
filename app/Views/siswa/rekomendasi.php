@@ -31,17 +31,14 @@
                 <td><?= $dt->nm_dudi ?></td>
                 <td><?= $dt->alias_jurusan ?></td>
                 <td>
-                  <a href="<?= base_url('hubin/dudi/' . $dt->id_jurusan . '/' . $dt->id_dudi) ?>" class="btn-sm btn-warning" title="Daftar Anak"><i class="fas fa-info-circle"></i> Detail</a>
+                  <a href="<?= base_url('siswa/dudi/' . $dt->id_jurusan . '/' . $dt->id_dudi) ?>" class="btn-sm btn-warning" title="Daftar Anak"><i class="fas fa-info-circle"></i> Detail</a>
                 </td>
               </tr>
             <?php endforeach; ?>
           </tbody>
         </table>
-
       </div>
     </div>
-
-
     <div class="card-footer">
     </div>
   </div>

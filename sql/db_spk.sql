@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 11, 2023 at 08:15 AM
+-- Generation Time: Aug 13, 2023 at 12:45 AM
 -- Server version: 8.0.32
 -- PHP Version: 8.2.3
 
@@ -59,7 +59,7 @@ CREATE TABLE `c2` (
 --
 
 INSERT INTO `c2` (`id_c2`, `id_siswa`, `nilai_c2`) VALUES
-(1, 1, 0),
+(1, 1, 30),
 (2, 2, 0),
 (3, 3, 0);
 
@@ -75,6 +75,15 @@ CREATE TABLE `c3` (
   `nilai_c3` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='tes wawancara';
 
+--
+-- Dumping data for table `c3`
+--
+
+INSERT INTO `c3` (`id_c3`, `id_siswa`, `nilai_c3`) VALUES
+(1, 1, 89.9),
+(2, 2, 90.4),
+(3, 3, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -87,6 +96,15 @@ CREATE TABLE `c4` (
   `nilai_c4` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='tes tertulis';
 
+--
+-- Dumping data for table `c4`
+--
+
+INSERT INTO `c4` (`id_c4`, `id_siswa`, `nilai_c4`) VALUES
+(1, 1, 30.6),
+(2, 2, 75.3),
+(3, 3, 65.9);
+
 -- --------------------------------------------------------
 
 --
@@ -98,6 +116,15 @@ CREATE TABLE `c5` (
   `id_siswa` int NOT NULL,
   `nilai_c5` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='jumlah alpha';
+
+--
+-- Dumping data for table `c5`
+--
+
+INSERT INTO `c5` (`id_c5`, `id_siswa`, `nilai_c5`) VALUES
+(1, 1, 1),
+(2, 2, 5),
+(3, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -210,6 +237,52 @@ INSERT INTO `tbl_kriteria` (`id_kriteria`, `nm_kriteria`, `tipe_kriteria`, `bobo
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_normalisasi`
+--
+
+CREATE TABLE `tbl_normalisasi` (
+  `id` int NOT NULL,
+  `id_siswa` int NOT NULL,
+  `c1` double NOT NULL,
+  `c2` double NOT NULL,
+  `c3` double NOT NULL,
+  `c4` double NOT NULL,
+  `c5` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='matriks normalisasi';
+
+--
+-- Dumping data for table `tbl_normalisasi`
+--
+
+INSERT INTO `tbl_normalisasi` (`id`, `id_siswa`, `c1`, `c2`, `c3`, `c4`, `c5`) VALUES
+(1, 1, 0.92524509803922, 1, 0.99446902654867, 0.40637450199203, 1),
+(2, 2, 1, 0, 1, 1, 0.2),
+(3, 3, 0.74754901960784, 0, 0, 0.87516600265604, 0.33333333333333);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_referensi`
+--
+
+CREATE TABLE `tbl_referensi` (
+  `id` int NOT NULL,
+  `id_siswa` int NOT NULL,
+  `nilai_referensi` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_referensi`
+--
+
+INSERT INTO `tbl_referensi` (`id`, `id_siswa`, `nilai_referensi`) VALUES
+(1, 1, 0.89434590287125),
+(2, 2, 0.69),
+(3, 3, 0.34745137098664);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_siswa`
 --
 
@@ -224,11 +297,11 @@ CREATE TABLE `tbl_siswa` (
   `phone_no` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `t_badan` int DEFAULT NULL,
   `b_badan` int DEFAULT NULL,
-  `formulir` blob,
-  `kartu_pelajar` blob,
-  `raport` blob,
-  `vaksin` blob,
-  `surat_kesehatan` blob
+  `formulir` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `kartu_pelajar` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `raport` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `vaksin` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `surat_kesehatan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -236,9 +309,9 @@ CREATE TABLE `tbl_siswa` (
 --
 
 INSERT INTO `tbl_siswa` (`id`, `id_user`, `nis`, `name`, `tgl_lahir`, `id_kelas`, `email`, `phone_no`, `t_badan`, `b_badan`, `formulir`, `kartu_pelajar`, `raport`, `vaksin`, `surat_kesehatan`) VALUES
-(1, 6, '2980', 'Fajar Dwi Guntoro', NULL, 14, '2980@smkw9jepara.sch.id', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1, 6, '2980', 'Fajar Dwi Guntoro', '2006-08-11', 14, '2980@smkw9jepara.sch.id', '6289671891052', 165, 56, NULL, NULL, NULL, NULL, NULL),
 (2, 0, '2981', 'Lina Fadhilah', NULL, 15, '2981@smkw9jepara.sch.id', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 0, '3320', 'budi bud', '2023-08-01', 1, '3320@mail.com', '03265654654654', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(3, 8, '3320', 'budi bud', '2023-08-01', 1, '3320@mail.com', '03265654654654', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -267,7 +340,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone_no`, `role`, `password`, `cre
 (4, 'Ina Itaqi Zuliana', 'ina@smkw9jepara.sch.id', '606060606060', 'gurubk', '$2y$10$VTOmjI2NVGKM9hMM9GJBFOGQf6AFpVgxU7h3jvppfNtcodYDRizW.', '2023-07-28 16:08:09'),
 (5, 'Irbab Aulia Amri', 'irbab@smkw9jepara.sch.id', '505050505050', 'kepsek', '$2y$10$ukG7LYlJM4DPiuvu0qDjZen4Ep8KlGs0yUKypXBYD8qib7/hwCtBC', '2023-07-28 16:08:09'),
 (6, 'Muhammad Fajar Dwi Guntoro', '2980@smkw9jepara.sch.id', '808080808080', 'siswa', '$2y$10$e3CF7sEWfaDpcS3agKHDOuaqMVfh.PvcI/AOUu69tNJ2/ATFzOOBa', '2023-07-28 16:08:09'),
-(8, 'Budi Bud', '3320@mail.com', '03265654654654', 'siswa', '$2y$10$ala3DmaX19rgv25iTGcaBecww0jBrN9JNPFr9d7ViyJUk2capIa/C', '0000-00-00 00:00:00');
+(8, 'Budi Bud', '3320@mail.com', '03265654654654', 'siswa', '$2y$10$e3CF7sEWfaDpcS3agKHDOuaqMVfh.PvcI/AOUu69tNJ2/ATFzOOBa', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -330,6 +403,18 @@ ALTER TABLE `tbl_kriteria`
   ADD PRIMARY KEY (`id_kriteria`);
 
 --
+-- Indexes for table `tbl_normalisasi`
+--
+ALTER TABLE `tbl_normalisasi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_referensi`
+--
+ALTER TABLE `tbl_referensi`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_siswa`
 --
 ALTER TABLE `tbl_siswa`
@@ -363,19 +448,19 @@ ALTER TABLE `c2`
 -- AUTO_INCREMENT for table `c3`
 --
 ALTER TABLE `c3`
-  MODIFY `id_c3` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_c3` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `c4`
 --
 ALTER TABLE `c4`
-  MODIFY `id_c4` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_c4` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `c5`
 --
 ALTER TABLE `c5`
-  MODIFY `id_c5` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_c5` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_dudi`
@@ -400,6 +485,18 @@ ALTER TABLE `tbl_kelas`
 --
 ALTER TABLE `tbl_kriteria`
   MODIFY `id_kriteria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_normalisasi`
+--
+ALTER TABLE `tbl_normalisasi`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tbl_referensi`
+--
+ALTER TABLE `tbl_referensi`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_siswa`

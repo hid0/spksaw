@@ -37,11 +37,8 @@
             <?php endforeach; ?>
           </tbody>
         </table>
-
       </div>
     </div>
-
-
     <div class="card-footer">
     </div>
   </div>

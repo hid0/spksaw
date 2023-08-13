@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Controllers\AdminController;
 use App\Controllers\GurubkController;
 use App\Controllers\HubinController;
 use App\Controllers\KoordinatorController;
@@ -48,6 +49,7 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->post('user', 'AdminController::user_add'); //with method post
     $routes->post('user/delete', 'AdminController::del_user');
     $routes->get("user/:num", 'AdminController::edit_user/$1'); //admin/user/{id}
+    $routes->post('edit-user', 'AdminController::update_user');
 
     // students
     $routes->get('students', 'AdminController::students');

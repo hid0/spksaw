@@ -106,17 +106,16 @@ class AdminController extends BaseController
 
   public function edit_user($id)
   {
-    $users = new UserModel();
-
-    $data = [
-      'users' => $users->find($id),
-    ];
-    return view('admin/user_edit', $data);
+    return view('admin/user_edit', [
+      'user' => Database::connect()->table('users')->select()->where('id', Services::request()->getUri()->getSegment(3))->get()->getFirstRow(),
+    ]);
   }
 
-  public function update_user($id)
+  public function update_user()
   {
-    helper(['form', 'url']);
+    Database::connect()->table('users')->set('name', $this->request->getPost('name'))->set('email', $this->request->getPost('email'))->set('role', $this->request->getPost('role'))->set('phone_no', $this->request->getPost('phone_no'))->where('id', $this->request->getPost('id'))->update();
+    session()->setFlashdata('message', 'user berhasil diubah!');
+    return redirect()->to(base_url('admin/users'));
   }
 
   public function del_user()

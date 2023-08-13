@@ -105,9 +105,10 @@ $routes->group("hubin", ["filter" => "auth"], function ($routes) {
     // Lihat Hasil
     $routes->get('lihatHasil', 'HubinController::lihatHasil');
     // detail Hasil
-    $routes->get('detailHasil', 'HubinController::detailHasil');
+    $routes->get('dudi/:num/:num', 'HubinController::dudi');
+    // $routes->get('detailHasil', 'HubinController::detailHasil');
     // cetak laporan
-    $routes->get('cetak', 'HubinController::cetak');
+    $routes->get('cetak/:num/:num', 'HubinController::cetak');
 });
 // Gurubk routes
 $routes->group("gurubk", ["filter" => "auth"], function ($routes) {

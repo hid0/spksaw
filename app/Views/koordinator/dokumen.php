@@ -41,15 +41,39 @@
                 <td class="text-center"><?= $dt->b_badan ?? '-'; ?></td>
                 <td class="text-center">
                   <?php if ($dt->formulir != NULL) : ?>
-                    <a href="<?= base_url('uploads/' . $dt->formulir); ?>" target="_blank" rel="noopener noreferrer">&#9989;</a>
+                    <a href="<?= base_url('uploads/' . $dt->formulir); ?>" target="_blank" title="Lihat PDF" rel="noopener noreferrer">&#9989;</a>
                   <?php else : ?>
-                    ❌
+                    <span title="File Belum diupload">❌</span>
                   <?php endif ?>
                 </td>
-                <td class="text-center"><?= $dt->kartu_pelajar != NULL ? '&#9989;' : '❌'; ?></td>
-                <td class="text-center"><?= $dt->raport != NULL ? '&#9989;' : '❌'; ?></td>
-                <td class="text-center"><?= $dt->vaksin != NULL ? '&#9989;' : '❌'; ?></td>
-                <td class="text-center"><?= $dt->surat_kesehatan != NULL ? '&#9989;' : '❌'; ?></td>
+                <td class="text-center">
+                  <?php if ($dt->kartu_pelajar != NULL) : ?>
+                    <a href="<?= base_url('uploads/' . $dt->kartu_pelajar); ?>" target="_blank" title="Lihat PDF" rel="noopener noreferrer">&#9989;</a>
+                  <?php else : ?>
+                    <span title="File Belum diupload">❌</span>
+                  <?php endif ?>
+                </td>
+                <td class="text-center">
+                  <?php if ($dt->raport != NULL) : ?>
+                    <a href="<?= base_url('uploads/' . $dt->raport); ?>" target="_blank" title="Lihat PDF" rel="noopener noreferrer">&#9989;</a>
+                  <?php else : ?>
+                    <span title="File Belum diupload">❌</span>
+                  <?php endif ?>
+                </td>
+                <td class="text-center">
+                  <?php if ($dt->vaksin != NULL) : ?>
+                    <a href="<?= base_url('uploads/' . $dt->vaksin); ?>" target="_blank" title="Lihat PDF" rel="noopener noreferrer">&#9989;</a>
+                  <?php else : ?>
+                    <span title="File Belum diupload">❌</span>
+                  <?php endif ?>
+                </td>
+                <td class="text-center">
+                  <?php if ($dt->surat_kesehatan != NULL) : ?>
+                    <a href="<?= base_url('uploads/' . $dt->surat_kesehatan); ?>" target="_blank" title="Lihat PDF" rel="noopener noreferrer">&#9989;</a>
+                  <?php else : ?>
+                    <span title="File Belum diupload">❌</span>
+                  <?php endif ?>
+                </td>
                 <td>
                   <?php if ($dt->nilai_c2 == null || $dt->nilai_c2 == 0) : ?>
                     <a href="<?= base_url('koordinator/dokumen/' . $dt->id); ?>" title="klik untuk merubah" class="btn btn-info btn-sm">

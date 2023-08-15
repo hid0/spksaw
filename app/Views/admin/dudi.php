@@ -18,7 +18,7 @@
           <table class="table">
             <thead>
               <tr>
-                <th>No.</th>
+                <th width="5%">No.</th>
                 <th>Nama DUDI</th>
                 <th>Jurusan</th>
                 <th>#</th>
@@ -31,8 +31,13 @@
                   <td><?= $no++ ?>.</td>
                   <td><?= $d->nm_dudi ?></td>
                   <td><?= $d->alias_jurusan ?></td>
-                  <td>
-                    <a href="<?= base_url('admin/dudi/' . $d->id_jurusan) ?>" class="btn-sm btn-warning" title="Daftar Anak"><i class="fas fa-info-circle"></i> Detail</a>
+                  <td width="15%">
+                    <a href="<?= base_url('admin/dudi/' . $d->id_jurusan) ?>" class="btn btn-sm btn-info" title="Daftar Anak"><i class="fas fa-info-circle"></i> Detail</a>
+                    <a href="<?= base_url('admin/dudi/' . $d->id_dudi . '/edit') ?>" class="btn btn-sm btn-warning" title="Edit DUDI"><i class="fas fa-pen-alt"></i> Edit</a>
+                    <form action="<?= base_url('admin/dudi/delete'); ?>" method="POST" class="d-inline">
+                      <input type="hidden" name="id" value="<?= $d->id_dudi; ?>">
+                      <button type="submit" onclick="return confirm('Yakin Ingin Menghapus DUDI ini?')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</button>
+                    </form>
                   </td>
                 </tr>
               <?php endforeach; ?>

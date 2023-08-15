@@ -10,7 +10,7 @@
       </div>
       <div class="card-body">
         <div class="form-group">
-          <label for="nis">Nama Lengkap</label>
+          <label for="nis">Nomer Induk Siswa</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-hotel"></i></span>

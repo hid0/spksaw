@@ -62,6 +62,9 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->get('dudi', 'AdminController::dudi');
     $routes->post('dudi/add', 'AdminController::add_dudi');
     $routes->get('dudi/:num', 'AdminController::detail_dudi');
+    $routes->get('dudi/:num/edit', 'AdminController::edit_dudi');
+    $routes->post('dudi', 'AdminController::update_dudi');
+    $routes->post('dudi/delete', 'AdminController::del_dudi');
 
     // criterias
     $routes->get('criterias', 'AdminController::criterias');

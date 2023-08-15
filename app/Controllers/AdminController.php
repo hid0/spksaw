@@ -342,6 +342,30 @@ class AdminController extends BaseController
     ]);
   }
 
+  public function edit_dudi()
+  {
+    // edit DUDI
+    return view('admin/dudi_edit', [
+      'dudi' => Database::connect()->table('tbl_dudi')->select()->where('id_dudi', Services::request()->getUri()->getSegment(3))->get()->getFirstRow(),
+    ]);
+  }
+
+  public function update_dudi()
+  {
+    // update dudi
+    Database::connect()->table('tbl_dudi')->set('id_jurusan', $this->request->getPost('id_jurusan'))->set('nm_dudi', $this->request->getPost('nm_dudi'))->where('id_dudi', $this->request->getPost('id'))->update();
+    session()->setFlashdata('message', 'DUDI berhasil diubah!');
+    return redirect()->to(base_url('admin/dudi'));
+  }
+
+  public function del_dudi()
+  {
+    // delete
+    Database::connect()->table('tbl_dudi')->where('id_dudi', $this->request->getPost('id'))->delete();
+    session()->setFlashdata('message', 'DUDI berhasil dihapus!');
+    return redirect()->to(base_url('admin/dudi'));
+  }
+
   public function criterias()
   {
     $db = \Config\Database::connect();

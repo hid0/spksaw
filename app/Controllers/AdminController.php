@@ -247,6 +247,30 @@ class AdminController extends BaseController
     }
   }
 
+  public function edit_student()
+  {
+    return view('admin/student_edit', [
+      'student' => Database::connect()->table('tbl_siswa')->select()->where('id', Services::request()->getUri()->getSegment(3))->get()->getFirstRow(),
+      'class' => Database::connect()->table('tbl_kelas')->select()->get()->getResult(),
+    ]);
+  }
+
+  public function update_student()
+  {
+    Database::connect()->table('tbl_siswa')->set('nis', $this->request->getPost('nis'))->set('name', $this->request->getPost('name'))->set('tgl_lahir', $this->request->getPost('tgl_lahir'))->set('id_kelas', $this->request->getPost('id_kelas'))->set('email', $this->request->getPost('email'))->set('phone_no', $this->request->getPost('phone_no'))->where('id', $this->request->getPost('id'))->update();
+    session()->setFlashdata('message', 'siswa berhasil diubah!');
+    return redirect()->to(base_url('admin/students'));
+  }
+
+  public function del_student()
+  {
+    // delete
+    Database::connect()->table('tbl_siswa')->where('id', $this->request->getPost('id'))->delete();
+    Database::connect()->table('users')->where('id', $this->request->getPost('id_user'))->delete();
+    session()->setFlashdata('message', 'Siswa & User berhasil dihapus!');
+    return redirect()->to(base_url('admin/students'));
+  }
+
   public function dudi()
   {
     $db = \Config\Database::connect();

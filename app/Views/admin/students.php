@@ -40,7 +40,12 @@
                   <td><?= $st->email ?></td>
                   <td><?= $st->phone_no ?? '-' ?></td>
                   <td class="text-center">
-                    <a href="<?= base_url('admin/student/' . $st->id) ?>" class="btn-sm btn-success" title="Detail"><i class="fas fa-info-circle"></i> Detail</a>
+                    <a href="<?= base_url('admin/student/' . $st->id) ?>" class="btn btn-sm btn-warning" title="Edit Siswa"><i class="fas fa-pen-alt"></i> Edit</a>
+                    <form action="<?= base_url('admin/student/delete'); ?>" method="POST" class="d-inline">
+                      <input type="hidden" name="id" value="<?= $st->id; ?>">
+                      <input type="hidden" name="id_user" value="<?= $st->id_user; ?>">
+                      <button type="submit" onclick="return confirm('Yakin Ingin Menghapus siswa ini?')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</button>
+                    </form>
                   </td>
                 </tr>
               <?php endforeach; ?>

@@ -430,4 +430,28 @@ class AdminController extends BaseController
       return view('admin/criterias', $data);
     }
   }
+
+  public function edit_criteria()
+  {
+    // edit
+    return view('admin/criteria_edit', [
+      'criteria' => Database::connect()->table('tbl_kriteria')->select()->where('id_kriteria', Services::request()->getUri()->getSegment(3))->get()->getFirstRow(),
+    ]);
+  }
+
+  public function update_criteria()
+  {
+    // update
+    Database::connect()->table('tbl_kriteria')->set('nm_kriteria', $this->request->getPost('nm_kriteria'))->set('tipe_kriteria', $this->request->getPost('tipe_kriteria'))->set('bobot_kriteria', $this->request->getPost('bobot_kriteria'))->where('id_kriteria', $this->request->getPost('id'))->update();
+    session()->setFlashdata('message', 'Kriteria berhasil diubah!');
+    return redirect()->to(base_url('admin/criterias'));
+  }
+
+  public function del_criteria()
+  {
+    // delete
+    Database::connect()->table('tbl_kriteria')->where('id_kriteria', $this->request->getPost('id'))->delete();
+    session()->setFlashdata('message', 'Kriteria berhasil dihapus!');
+    return redirect()->to(base_url('admin/criterias'));
+  }
 }

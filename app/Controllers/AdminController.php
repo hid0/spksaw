@@ -247,6 +247,30 @@ class AdminController extends BaseController
     }
   }
 
+  public function edit_student()
+  {
+    return view('admin/student_edit', [
+      'student' => Database::connect()->table('tbl_siswa')->select()->where('id', Services::request()->getUri()->getSegment(3))->get()->getFirstRow(),
+      'class' => Database::connect()->table('tbl_kelas')->select()->get()->getResult(),
+    ]);
+  }
+
+  public function update_student()
+  {
+    Database::connect()->table('tbl_siswa')->set('nis', $this->request->getPost('nis'))->set('name', $this->request->getPost('name'))->set('tgl_lahir', $this->request->getPost('tgl_lahir'))->set('id_kelas', $this->request->getPost('id_kelas'))->set('email', $this->request->getPost('email'))->set('phone_no', $this->request->getPost('phone_no'))->where('id', $this->request->getPost('id'))->update();
+    session()->setFlashdata('message', 'siswa berhasil diubah!');
+    return redirect()->to(base_url('admin/students'));
+  }
+
+  public function del_student()
+  {
+    // delete
+    Database::connect()->table('tbl_siswa')->where('id', $this->request->getPost('id'))->delete();
+    Database::connect()->table('users')->where('id', $this->request->getPost('id_user'))->delete();
+    session()->setFlashdata('message', 'Siswa & User berhasil dihapus!');
+    return redirect()->to(base_url('admin/students'));
+  }
+
   public function dudi()
   {
     $db = \Config\Database::connect();
@@ -318,6 +342,30 @@ class AdminController extends BaseController
     ]);
   }
 
+  public function edit_dudi()
+  {
+    // edit DUDI
+    return view('admin/dudi_edit', [
+      'dudi' => Database::connect()->table('tbl_dudi')->select()->where('id_dudi', Services::request()->getUri()->getSegment(3))->get()->getFirstRow(),
+    ]);
+  }
+
+  public function update_dudi()
+  {
+    // update dudi
+    Database::connect()->table('tbl_dudi')->set('id_jurusan', $this->request->getPost('id_jurusan'))->set('nm_dudi', $this->request->getPost('nm_dudi'))->where('id_dudi', $this->request->getPost('id'))->update();
+    session()->setFlashdata('message', 'DUDI berhasil diubah!');
+    return redirect()->to(base_url('admin/dudi'));
+  }
+
+  public function del_dudi()
+  {
+    // delete
+    Database::connect()->table('tbl_dudi')->where('id_dudi', $this->request->getPost('id'))->delete();
+    session()->setFlashdata('message', 'DUDI berhasil dihapus!');
+    return redirect()->to(base_url('admin/dudi'));
+  }
+
   public function criterias()
   {
     $db = \Config\Database::connect();
@@ -381,5 +429,29 @@ class AdminController extends BaseController
       ];
       return view('admin/criterias', $data);
     }
+  }
+
+  public function edit_criteria()
+  {
+    // edit
+    return view('admin/criteria_edit', [
+      'criteria' => Database::connect()->table('tbl_kriteria')->select()->where('id_kriteria', Services::request()->getUri()->getSegment(3))->get()->getFirstRow(),
+    ]);
+  }
+
+  public function update_criteria()
+  {
+    // update
+    Database::connect()->table('tbl_kriteria')->set('nm_kriteria', $this->request->getPost('nm_kriteria'))->set('tipe_kriteria', $this->request->getPost('tipe_kriteria'))->set('bobot_kriteria', $this->request->getPost('bobot_kriteria'))->where('id_kriteria', $this->request->getPost('id'))->update();
+    session()->setFlashdata('message', 'Kriteria berhasil diubah!');
+    return redirect()->to(base_url('admin/criterias'));
+  }
+
+  public function del_criteria()
+  {
+    // delete
+    Database::connect()->table('tbl_kriteria')->where('id_kriteria', $this->request->getPost('id'))->delete();
+    session()->setFlashdata('message', 'Kriteria berhasil dihapus!');
+    return redirect()->to(base_url('admin/criterias'));
   }
 }

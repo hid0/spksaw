@@ -54,15 +54,24 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     // students
     $routes->get('students', 'AdminController::students');
     $routes->post('student/add', 'AdminController::add_student');
+    $routes->get('student/:num', 'AdminController::edit_student');
+    $routes->post('student', 'AdminController::update_student');
+    $routes->post('student/delete', 'AdminController::del_student');
 
     // DUDI
     $routes->get('dudi', 'AdminController::dudi');
     $routes->post('dudi/add', 'AdminController::add_dudi');
     $routes->get('dudi/:num', 'AdminController::detail_dudi');
+    $routes->get('dudi/:num/edit', 'AdminController::edit_dudi');
+    $routes->post('dudi', 'AdminController::update_dudi');
+    $routes->post('dudi/delete', 'AdminController::del_dudi');
 
     // criterias
-    // $routes->get('criterias', 'AdminController::criterias');
-    // $routes->post('criteria/add', 'AdminController::add_criteria');
+    $routes->get('criterias', 'AdminController::criterias');
+    $routes->post('criteria/add', 'AdminController::add_criteria');
+    $routes->get('criteria/:num', 'AdminController::edit_criteria');
+    $routes->post('criteria', 'AdminController::update_criteria');
+    $routes->post('criteria/delete', 'AdminController::del_criteria');
 });
 // Siswa routes
 $routes->group("siswa", ["filter" => "auth"], function ($routes) {

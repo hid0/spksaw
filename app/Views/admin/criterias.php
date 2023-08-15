@@ -33,7 +33,13 @@
                   <td><?= $d->nm_kriteria ?></td>
                   <td><?= $d->tipe_kriteria ?></td>
                   <td><?= $d->bobot_kriteria ?></td>
-                  <td></td>
+                  <td width="11%">
+                    <a href="<?= base_url('admin/criteria/' . $d->id_kriteria) ?>" class="btn btn-sm btn-warning" title="Edit Kriteria"><i class="fas fa-pen-alt"></i> Edit</a>
+                    <form action="<?= base_url('admin/criteria/delete'); ?>" method="POST" class="d-inline">
+                      <input type="hidden" name="id" value="<?= $d->id_kriteria; ?>">
+                      <button type="submit" onclick="return confirm('Yakin Ingin Menghapus Kriteria ini?')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</button>
+                    </form>
+                  </td>
                 </tr>
               <?php endforeach; ?>
             </tbody>

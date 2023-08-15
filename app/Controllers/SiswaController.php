@@ -33,6 +33,30 @@ class SiswaController extends BaseController
     // upload pdf file
     $validation = $this->validate(
       [
+        'tgl_lahir' => [
+          'rules' => 'required',
+          'errors' => [
+            'required' => 'Tanggal Lahir wajib diisi!'
+          ]
+        ],
+        'phone_no' => [
+          'rules' => 'numeric',
+          'errors' => [
+            'numeric' => 'No.HP wajib diisi!'
+          ]
+        ],
+        't_badan' => [
+          'rules' => 'numeric',
+          'errors' => [
+            'numeric' => 'Tinggi Badan wajib diisi!'
+          ]
+        ],
+        'b_badan' => [
+          'rules' => 'numeric',
+          'errors' => [
+            'numeric' => 'Berat Badan wajib diisi!'
+          ]
+        ],
         'formulir' => [
           'rules' => 'max_size[formulir,4096]', 'mime_in[formulir,application/pdf]', 'ext_in[formulir,pdf]',
           'errors' => [
@@ -77,55 +101,58 @@ class SiswaController extends BaseController
     );
 
     if ($validation) {
-      $file1 = $this->request->getFile('formulir');
-      $file2 = $this->request->getFile('kartu_pelajar');
-      $file3 = $this->request->getFile('raport');
-      $file4 = $this->request->getFile('vaksin');
-      $file5 = $this->request->getFile('surat_kesehatan');
+      if ($this->request->getFiles()['formulir']->getError() != 4 || $this->request->getFiles()['kartu_pelajar']->getError() != 4 || $this->request->getFiles()['raport']->getError() != 4 || $this->request->getFiles()['vaksin']->getError() != 4 || $this->request->getFiles()['surat_kesehatan']->getError() != 4) {
+        $file1 = $this->request->getFile('formulir');
+        $file2 = $this->request->getFile('kartu_pelajar');
+        $file3 = $this->request->getFile('raport');
+        $file4 = $this->request->getFile('vaksin');
+        $file5 = $this->request->getFile('surat_kesehatan');
 
-      // $check = Database::connect()->table('tbl_siswa')->select()->where('id', $this->request->getPost('id_siswa'))->get()->getFirstRow();
-      // if ($check->formulir != NULL || $check->formulir != '' && $file1->isValid()) {
-      //   // delete old file
-      //   if (!$file1->isValid()) {
-      //     // return $this->fail($file1->getErrorString());
-      //   }
-      //   if (file_exists('uploads/' . $check->formulir)) {
-      //     unlink('uploads/' . $check->formulir);
-      //   }
-      // } elseif ($check->kartu_pelajar != NULL || $check->kartu_pelajar != '' && $file2->isValid()) {
-      //   // delete old file
-      //   if (file_exists('uploads/' . $check->kartu_pelajar)) {
-      //     unlink('uploads/' . $check->kartu_pelajar);
-      //   }
-      // } elseif ($check->raport != NULL || $check->raport != '' && $file3->isValid()) {
-      //   // delete old file
-      //   if (file_exists('uploads/' . $check->raport)) {
-      //     unlink('uploads/' . $check->raport);
-      //   }
-      // } elseif ($check->vaksin != NULL || $check->vaksin != '' && $file4->isValid()) {
-      //   // delete old file
-      //   if (file_exists('uploads/' . $check->vaksin)) {
-      //     unlink('uploads/' . $check->vaksin);
-      //   }
-      // } elseif ($check->surat_kesehatan != NULL || $check->surat_kesehatan != '' && $file5->isValid()) {
-      //   // delete old file
-      //   if (file_exists('uploads/' . $check->surat_kesehatan)) {
-      //     unlink('uploads/' . $check->surat_kesehatan);
-      //   }
-      // }
-      $newName1 = $file1->getRandomName();
-      $newName2 = $file2->getRandomName();
-      $newName3 = $file3->getRandomName();
-      $newName4 = $file4->getRandomName();
-      $newName5 = $file5->getRandomName();
-      $file1->move('uploads', $newName1);
-      $file2->move('uploads', $newName2);
-      $file3->move('uploads', $newName3);
-      $file4->move('uploads', $newName4);
-      $file5->move('uploads', $newName5);
-      Database::connect()->table('tbl_siswa')->set('tgl_lahir', $this->request->getPost('tgl_lahir'))->set('phone_no', $this->request->getPost('phone_no'))->set('t_badan', $this->request->getPost('t_badan'))->set('b_badan', $this->request->getPost('b_badan'))->set('formulir', $newName1)->set('kartu_pelajar', $newName2)->set('raport', $newName3)->set('vaksin', $newName4)->set('surat_kesehatan', $newName5)->where('id', $this->request->getPost('id_siswa'))->update();
-      // dd($check);
-      session()->setFlashdata('message', 'Data berhasil disimpan & diupload');
+        // $check = Database::connect()->table('tbl_siswa')->select()->where('id', $this->request->getPost('id_siswa'))->get()->getFirstRow();
+        // if ($check->formulir != NULL || $check->formulir != '' && $this->request->getFiles()['formulir']->getError() != 4) {
+        //   // delete old file
+        //   if (file_exists($check->formulir)) {
+        //     unlink($check->formulir);
+        //   }
+        //   unlink($check->formulir);
+        //   } elseif ($check->kartu_pelajar != NULL || $check->kartu_pelajar != '' && $this->request->getFiles()['kartu_pelajar']->getError() != 4) {
+        //     // delete old file
+        //     if (file_exists('uploads/' . $check->kartu_pelajar)) {
+        //       unlink('uploads/' . $check->kartu_pelajar);
+        //     }
+        //   } elseif ($check->raport != NULL || $check->raport != '' && $this->request->getFiles()['raport']->getError() != 4) {
+        //     // delete old file
+        //     if (file_exists('uploads/' . $check->raport)) {
+        //       unlink('uploads/' . $check->raport);
+        //     }
+        //   } elseif ($check->vaksin != NULL || $check->vaksin != '' && $this->request->getFiles()['vaksin']->getError() != 4) {
+        //     // delete old file
+        //     if (file_exists('uploads/' . $check->vaksin)) {
+        //       unlink('uploads/' . $check->vaksin);
+        //     }
+        //   } elseif ($check->surat_kesehatan != NULL || $check->surat_kesehatan != '' && $this->request->getFiles()['surat_kesehatan']->getError() != 4) {
+        //     // delete old file
+        //     if (file_exists('uploads/' . $check->surat_kesehatan)) {
+        //       unlink('uploads/' . $check->surat_kesehatan);
+        //     }
+        // }
+        $newName1 = $file1->getRandomName();
+        $newName2 = $file2->getRandomName();
+        $newName3 = $file3->getRandomName();
+        $newName4 = $file4->getRandomName();
+        $newName5 = $file5->getRandomName();
+        $file1->move('uploads', $newName1);
+        $file2->move('uploads', $newName2);
+        $file3->move('uploads', $newName3);
+        $file4->move('uploads', $newName4);
+        $file5->move('uploads', $newName5);
+        Database::connect()->table('tbl_siswa')->set('tgl_lahir', $this->request->getPost('tgl_lahir'))->set('phone_no', $this->request->getPost('phone_no'))->set('t_badan', $this->request->getPost('t_badan'))->set('b_badan', $this->request->getPost('b_badan'))->set('formulir', $newName1)->set('kartu_pelajar', $newName2)->set('raport', $newName3)->set('vaksin', $newName4)->set('surat_kesehatan', $newName5)->where('id', $this->request->getPost('id_siswa'))->update();
+        // dd($check);
+        session()->setFlashdata('message', 'Data berhasil disimpan & diupload');
+      } else {
+        Database::connect()->table('tbl_siswa')->set('tgl_lahir', $this->request->getPost('tgl_lahir'))->set('phone_no', $this->request->getPost('phone_no'))->set('t_badan', $this->request->getPost('t_badan'))->set('b_badan', $this->request->getPost('b_badan'))->where('id', $this->request->getPost('id_siswa'))->update();
+        session()->setFlashdata('message', 'Biodata berhasil disimpan');
+      }
     }
     return redirect()->to(base_url('siswa/biodata'));
   }
